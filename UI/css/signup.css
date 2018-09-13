@@ -1,0 +1,55 @@
+/* css for signup and sign pages */
+body {
+    background-color: white;
+}
+
+main {
+    display: flex;
+    font-family: 'Open Sans', sans-serif;
+    background-color:black;
+}
+
+#burger {
+    background-image:url('../img/burger_b.jpg');
+    height: 607px;
+}
+.sign_in {
+    color:white;
+    margin-top:7rem;
+    margin-bottom:auto;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: 560px;
+    padding: 15px;
+    box-shadow: 1px 0.5px 2px 2px white;
+    border-radius: 2%;
+    opacity: 0.95;
+    }
+
+.sign_in h1 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+.sign_in form{
+    margin-right:8px;
+    margin-left:8px;
+}
+
+.sign_in h4 {
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.sign_in p {
+    font-size: 14px;
+}
+
+.sign_in a {
+    color : green;
+}
+
+.sign_in a:hover {
+    color: white;
+}

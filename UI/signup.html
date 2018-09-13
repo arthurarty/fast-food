@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Sign In</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="css/signup.css" />
+        <script src="js/main.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    </head>
+    <body>
+        <main>
+            <div class="col-2" id="burger">
+            </div>
+            <div class="sign_in col-2">
+                <h1 class="center_text">Fast Food Fast : Sign Up</h1>
+                <form action="view_questions.html" method="get">
+                    <h4>Display Name</h4>
+                    <input class="form_input" name="display_name" type="text" placeholder="Enter Display Name" required>
+                    <h4>Email:</h4>
+                    <input class="form_input" name="email" type="email" placeholder="Enter Email Address" required>
+                    <div class="row">
+                        <div class="col-2">
+                            <h4>Password:</h4>
+                            <input class="form_input_password" name="password" type="password" placeholder="Enter Password" required>
+                        </div>
+                        <div class="col-2">
+                            <h4>Confirm Password</h4>
+                            <input class="form_input_password" name="password_confirm" type="password" placeholder="Enter Password" required>
+                        </div>
+                    </div>  
+                    <input class="submit" type="submit" value="Sign up">
+                </form>
+                <p class="center_text">Have account? <a href="index.html">Login.</a></p>
+            </div>
+        </main>
+    </body>
+</html>

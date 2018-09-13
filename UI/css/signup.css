@@ -1,24 +1,29 @@
 /* css for signup and sign pages */
-main {
-    /* background-color: #f6c188; */
-    background-image: url('../img/bg1.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    color:white;
-    font-family: 'Open Sans', sans-serif;
+body {
+    background-color: white;
 }
 
+main {
+    display: flex;
+    font-family: 'Open Sans', sans-serif;
+    background-color:black;
+}
+
+#burger {
+    background-image:url('../img/burger_b.jpg');
+    height: 607px;
+}
 .sign_in {
-    background-color: black;
-    margin-top:3rem;
+    color:white;
+    margin-top:7rem;
     margin-bottom:auto;
     margin-left: auto;
     margin-right: auto;
     height: auto;
-    width: 360px;
+    width: 560px;
     padding: 15px;
-    box-shadow: 1px 2px 2px 2px black;
-    border-radius: 6%;
+    box-shadow: 1px 0.5px 2px 2px white;
+    border-radius: 2%;
     opacity: 0.95;
     }
 

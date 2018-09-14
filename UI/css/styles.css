@@ -143,3 +143,14 @@ nav a {
 .restaurant_menu span {
     font-size:120%;
 }
+
+.quantity_form {
+    width: 370px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.quantity_form .form_input{
+    color:black;
+    border:1px solid #373F51;
+    padding:8px;
+}

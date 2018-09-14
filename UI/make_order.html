@@ -20,7 +20,7 @@
         <div class="col-2 right"><!-- column open-->
             <ul>
                 <li class="center_text"><a href="view_menu.html">Home</a></li>
-                <li class="center_text"><a href="#">Order</a></li>
+                <li class="center_text"><a href="make_order.html">Your Order</a></li>
                  <li class="center_text"><a href="#">Profile</a></li>
                  <li class="center_text"><a href="index.html">Logout</a></li>
              </ul>
@@ -38,26 +38,14 @@
                 </ul>
             </div>
             <div class="col-4-12 content">
-                <h3 class="center_text"><i class="fa fa-cutlery" aria-hidden="true"> Our Menu</i></h3>
-
-                <!-- restuarant menu-->
-                <div class="restaurant_menu"> 
-                    <div class="food_item">
-                        <h3>Chapati</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <p class="right">
-                            Pricing : 1500/= <br>
-                            <span>Click <a href="make_order.html">here to Order : <i class="fa fa-plus" aria-hidden="true"></i></a> </span>
-                        </p>
-                    </div>
-             
+                <h3 class="center_text"><i class="fa fa-cutlery" aria-hidden="true"> Your Order</i></h3>
+                <div class="quantity_form">
+                    <h3>Enter the quantity</h3>
+                    <form>
+                        <input type="number" name="quantity" placeholder="0" class="form_input" min="1"> 
+                        <input type="submit" class="submit">
+                    </form>
                 </div>
-                <!-- end of resturant menu-->
-
             </div>
         </div>
     </main>

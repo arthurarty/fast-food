@@ -165,3 +165,18 @@ nav a {
     border:1px solid #373F51;
     margin-right: 8px;
 }
+
+/* information messages */
+.info-success {
+    background-color:#66ff66;
+    color:black;
+    border: 1px solid #e6ffe6;
+    text-align: center;
+    width:750px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.info-success span {
+    font-size: 120%;
+}

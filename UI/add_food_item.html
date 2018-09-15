@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="add_food_item.html">
+                        <a href="add_food_items.html">
                             <i class="fa fa-angle-double-right" aria-hidden="true"></i> Add food item
                         </a>
                     </li>
@@ -59,36 +59,14 @@
             <!-- end of side bar navigation -->
 
             <div class="col-4-12 content">
-                <h3 class="center_text"><i class="fa fa-cutlery" aria-hidden="true"> View Food items</i></h3>
-
-                <!-- list of food items-->
-                <div class="list_orders"> 
-
-                    <!-- each food item -->
-                    <div class="order">
-                        <strong>No: <i>1</i></strong> | Name : <i>Chapati</i><br>
-                        Price : <i>4500</i> | Date addedd : <i>9/15/2018</i> <br>
-                        <div class="btn-group">
-                            <a href="" class="green-btn">Edit item</a>
-                            <a href="" class="red-btn">Remove</a>
-                        </div>    
-                    </div>
-                    <!-- end of food item -->   
-                    
-                    <!-- each food item -->
-                    <div class="order">
-                            <strong>No: <i>2</i></strong> | Name : <i>Rice</i><br>
-                            Price : <i>4500</i> | Date addedd : <i>9/15/2018</i> <br>
-                            <div class="btn-group">
-                                <a href="" class="green-btn">Edit item</a>
-                                <a href="" class="red-btn">Remove</a>
-                            </div>    
-                        </div>
-                        <!-- end of food item -->  
-
-                </div>
-                <!-- end of list of food item-->
-
+                <h3 class="center_text"><i class="fa fa-cutlery" aria-hidden="true"> Add food item</i></h3>
+                <form class="">
+                    Enter name of food item
+                    <input class="form_input_black" placeholder="enter name of food here" type="text" name="name_food">
+                    Enter price of food item
+                    <input class="form_input_black" placeholder="enter price" type="number" name="price">
+                    <input type="submit" class="green-btn" value="add item">
+                </form>
             </div>
         </div>
     </main>

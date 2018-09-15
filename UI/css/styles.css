@@ -34,7 +34,7 @@ ul {
     background: transparent;
 }
 
-.submit {
+.green-btn {
     color:white;
     margin-top : 10px;
     border-radius: 5px;
@@ -45,12 +45,24 @@ ul {
     height: 35px; 
 }
 
-a {
-    color: white;
+.blue-btn {
+    color : white;
+    margin-top : 0px;
+    border-radius: 5px;
+    background-color: blue;
+    border: 1px solid blue;
+    padding:5px;
+    width: 100%;
+    height: 30px; 
+}
+
+a { 
+    text-decoration: none;
+    color:#A9BCD0;
 }
 
 a:hover {
-    color: #00FFFF;
+    color: #4FBCC4;
 }
 
 /*********** columns css ***************************/
@@ -66,19 +78,21 @@ a:hover {
 .col-5 {
     width: 20%;
 }
-
+.col-4-12 {
+    width: 70%;
+}
 .right {
     text-align: right;
 }
 /*************   nav css   **************************/
 nav {
-    background-color: black;
+    background-color: #1B1B1E;
     color:white;
     width:100%;
     margin-top:0;
     margin-right: 0;
     margin-left: 0;
-    box-shadow:1px 2px 2px black;
+    box-shadow:0.5px 1px 2px black;
     font-family: 'Open Sans', sans-serif;
     position: fixed;
     z-index: 100;
@@ -92,7 +106,7 @@ nav ul li{
     padding-left:8px;
 }
 nav a {
-    text-decoration: none;
+    color:white;
     font-size: 14px;    
 }
 #company_name {
@@ -102,11 +116,11 @@ nav a {
 
 /*************** side navigation ****************/
 .side-nav {
-    margin-top:5px;
+    margin-top: 54px;
     height: 555px;
-    background-color:#f8f9fa;
-    position: fixed;
-    top: 54px;
+    background-color:#373F51;
+    color:white;
+    padding:8px;
 }
 .side-nav ul li {
     padding-bottom: 8px;
@@ -114,4 +128,55 @@ nav a {
 .side-nav a{
     color: black;
     text-decoration: none;
+}
+.side-nav h3 {
+    margin:0;
+    margin-top:4px;
+    padding:0;
+}
+
+.content {
+    padding:8px;
+    margin-top: 46px;
+    color:black;
+    width:100%;
+}
+.content img {
+    width:25px;
+}
+.restaurant_menu {
+    padding: 8px;
+    margin:16px;
+}
+.restaurant_menu i{
+    color:green;
+}
+.restaurant_menu span {
+    font-size:120%;
+}
+
+.quantity_form {
+    width: 370px;
+    display:flex;
+    float: right;
+}
+.quantity_form .form_input{
+    color:black;
+    border:1px solid #373F51;
+    margin-right: 8px;
+}
+
+/* information messages */
+.info-success {
+    background-color:#66ff66;
+    color:black;
+    border: 1px solid #e6ffe6;
+    text-align: center;
+    width:750px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.info-success span {
+    font-size: 120%;
 }

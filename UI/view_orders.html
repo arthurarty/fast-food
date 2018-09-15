@@ -21,7 +21,6 @@
             <ul>
                 <li class="center_text"><a href="view_menu.html">Home</a></li>
                 <li class="center_text"><a href="make_order.html">Your Order</a></li>
-                 <li class="center_text"><a href="#">Profile</a></li>
                  <li class="center_text"><a href="index.html">Logout</a></li>
              </ul>
         </div><!-- closing column -->
@@ -31,7 +30,7 @@
     
     <main>
         <div class="row">
-            
+
             <!-- side bar navigation -->
             <div class="col-5 side-nav">
                 <h3 class="center_text">Side Nav</h3>
@@ -48,24 +47,34 @@
             <div class="col-4-12 content">
                 <h3 class="center_text"><i class="fa fa-cutlery" aria-hidden="true"> Our Menu</i></h3>
 
-                <!-- restuarant menu-->
-                <div class="restaurant_menu"> 
-                    <div class="food_item">
-                        <h3>Chapati</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <p class="right">
-                            Pricing : 1500/= <br>
-                        </p>
-                        <form class="quantity_form" action="confirm_order.html" method="get">
-                            <input type="number" name="quantity" placeholder="0" class="form_input" min="1"> 
-                            <input type="submit" class="blue-btn" value="Order">
-                        </form>
+                <!-- list of orders-->
+                <div class="list_orders"> 
+
+                    <!-- each order -->
+                    <div class="order">
+                        <strong>Order No: <i>1</i></strong> | Food Item : <i>Chapati</i><br>
+                        Quantity : <i>3</i> | Price : <i>4500</i> | Customer : <i>Nangai Arthur</i>
+                        | Time : <i>9/15/2018</i> <br>
+                        Accepted : <i>False</i> | Status : <i>False</i> <br>
+                        <div class="btn-group">
+                            <a href="" class="green-btn">Accept</a>
+                            <a href="" class="red-btn">Decline</a>
+                        </div>    
                     </div>
-             
+                    <!-- end of order -->
+                   
+                    <!-- each order -->
+                    <div class="order">
+                        <strong>Order No: 2</strong> | Food Item : Rice<br>
+                        Quantity : 3 | Price : 4500 | Customer : Nangai Arthur | Time : 9/15/2018 <br>
+                        Accepted : False | Status : False <br>
+                        <div class="btn-group">
+                            <a href="" class="green-btn">Accept</a>
+                            <a href="" class="red-btn">Decline</a>
+                        </div>    
+                    </div>
+                    <!-- end of order -->
+
                 </div>
                 <!-- end of resturant menu-->
 

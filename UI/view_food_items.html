@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fast Food Fast</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <script src="js/main.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://use.fontawesome.com/d92b72e3f8.js"></script>
+</head>
+<body>
+
+    <!-- top navigation -->
+    <nav class="row">
+        <div class="col-2">
+            <h2 id="company_name">Fast Food Fast</h2>
+        </div>
+        <div class="col-2 right"><!-- column open-->
+            <ul>
+                <li class="center_text"><a href="view_menu.html">Home</a></li>
+                 <li class="center_text"><a href="index.html">Logout</a></li>
+             </ul>
+        </div><!-- closing column -->
+    </nav>
+    <!-- end of top navigation -->
+
+    
+    <main>
+        <div class="row">
+
+            <!-- side bar navigation -->
+            <div class="col-5 side-nav">
+                <h3 class="center_text">Side Nav</h3>
+                <ul>
+                    <li>
+                        <a href="view_orders.html">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i> View Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="accepted_orders.html">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i> Accepted Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="view_food_items.html">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i> View food items
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add_food_item.html">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i> Add food item
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- end of side bar navigation -->
+
+            <div class="col-4-12 content">
+                <h3 class="center_text"><i class="fa fa-cutlery" aria-hidden="true"> View Food items</i></h3>
+
+                <!-- list of food items-->
+                <div class="list_orders"> 
+
+                    <!-- each food item -->
+                    <div class="order">
+                        <strong>No: <i>1</i></strong> | Name : <i>Chapati</i><br>
+                        Price : <i>4500</i> | Date addedd : <i>9/15/2018</i> <br>
+                        <div class="btn-group">
+                            <a href="" class="green-btn">Edit item</a>
+                            <a href="" class="red-btn">Remove</a>
+                        </div>    
+                    </div>
+                    <!-- end of food item -->   
+                    
+                    <!-- each food item -->
+                    <div class="order">
+                            <strong>No: <i>2</i></strong> | Name : <i>Rice</i><br>
+                            Price : <i>4500</i> | Date addedd : <i>9/15/2018</i> <br>
+                            <div class="btn-group">
+                                <a href="" class="green-btn">Edit item</a>
+                                <a href="" class="red-btn">Remove</a>
+                            </div>    
+                        </div>
+                        <!-- end of food item -->  
+
+                </div>
+                <!-- end of list of food item-->
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -23,3 +23,8 @@ def test_get_single_order(client):
     resp = client.get('/v1/orders/1', follow_redirects=True)
     assert resp.status_code == 200
     assert b'customer_name' in resp.data
+
+
+def test_update_order(client):
+    resp = client.put('/v1/orders/1')
+    assert resp.status_code == 201

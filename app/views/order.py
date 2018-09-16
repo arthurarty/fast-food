@@ -37,3 +37,10 @@ def get_specific_order(order_id):
     """method returns specific order"""
     res = fast_food.get_single_order(order_id)
     return jsonify(res), 200
+
+
+@app.route('/v1/orders/<int:order_id>/', methods=['PUT'])
+def update_status(order_id):
+    """method updates the status of an order"""
+    res = fast_food.update_order_status(order_id)
+    return jsonify(res), 201

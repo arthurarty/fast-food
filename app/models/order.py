@@ -6,6 +6,7 @@ class Order:
         self.customer_name = customer_name
         self.item_name = item_name
         self.quantity = quantity
+        self.status = 'incomplete'
 
     def get_customer_name(self):
         """method returns customer name"""

@@ -13,3 +13,8 @@ class Restuarant:
     def get_orders(self):
         """return all orders"""
         return self.orders
+
+    def get_single_order(self, id):
+        """return a specific order"""
+        index = id - 1
+        return self.orders[index]

@@ -27,5 +27,13 @@ def post_order():
 
 @app.route('/v1/orders', methods=['GET'])
 def get_orders():
+    """method returns all orders"""
     res = fast_food.get_orders()
-    return jsonify(res)
+    return jsonify(res), 200
+
+
+@app.route('/v1/orders/<int:order_id>/', methods=['GET'])
+def get_specific_order(order_id):
+    """method returns specific order"""
+    res = fast_food.get_single_order(order_id)
+    return jsonify(res), 200

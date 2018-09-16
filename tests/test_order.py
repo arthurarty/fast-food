@@ -15,3 +15,8 @@ def test_get_orders(client):
     resp = client.get(
         '/v1/orders')
     assert resp.status_code == 200
+
+
+def test_get_single_order(client):
+    resp = client.get('/v1/orders/1')
+    assert resp.status_code == 200

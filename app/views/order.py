@@ -12,7 +12,7 @@ def post_order():
     """method to add order"""
     title = str(request.json.get('customer_name')).strip()
     item_name = str(request.json.get('item_name')).strip()
-    quantity = str(request.json.get('quantity')).strip()
+    quantity = str(request.json.get('quantity'))
 
     if not title:
         return jsonify({"msg": "Customer field is empty"}), 400
@@ -22,6 +22,9 @@ def post_order():
 
     if not quantity:
         return jsonify({"msg": "Quantity field is empty"}), 400
+
+    if not isinstance(request.json.get('customer_name'), str):
+        return jsonify({"msg": "Name must be a string. Example: johndoe"}), 400
 
     if request.json.get('customer_name'):
         new_order = Order(title, item_name, quantity)

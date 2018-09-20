@@ -1,44 +1,32 @@
-from app.views import app
+from app.views import app, test_str_input, test_int_input
 from app.models.order import Order
 from app.models.restuarant import Restuarant
 from flask import Flask, jsonify, request
 
-empty_field = {'msg': 'A field is empty'}
 fast_food = Restuarant()
 
 
 @app.route('/v1/orders', methods=['POST'])
 def post_order():
     """method to add order"""
-    title = str(request.json.get('customer_name')).strip()
-    item_name = str(request.json.get('item_name')).strip()
-    quantity = str(request.json.get('quantity'))
+    customer_name = test_str_input(request.json.get('customer_name'))
+    item_name = test_str_input(request.json.get('item_name'))
+    quantity = test_int_input(request.json.get('quantity'))
 
-    if not title:
-        return jsonify({"msg": "Customer field is empty"}), 400
+    if customer_name:
+        if item_name:
+            if quantity:
+                new_order = Order(customer_name, item_name, quantity)
+                fast_food.add_order(new_order)
+            else:
+                return jsonify({"msg": "Quantity must be an integer > 0. Example: 2"}), 400
 
-    if not item_name:
-        return jsonify({"msg": "Item_name field is empty"}), 400
-
-    if not quantity:
-        return jsonify({"msg": "Quantity field is empty"}), 400
-
-    if not isinstance(request.json.get('customer_name'), str):
-        return jsonify({"msg": "Name must be a string. Example: johndoe"}), 400
-
-    if not isinstance(request.json.get('item_name'), str):
-        return jsonify({"msg": "Item name must be a string. Example: Rice"}), 400
-
-    if not isinstance(request.json.get('quantity'), int):
-        return jsonify({"msg": "Quantity must be an integer. Example: 2"}), 400
-
-    if request.json.get('customer_name'):
-        new_order = Order(title, item_name, quantity)
-        fast_food.add_order(new_order)
+        else:
+            return jsonify({"msg": "Item name must be a string. Example: Rice"}), 400
         return jsonify({"msg": "Order has been added"}), 201
 
     else:
-        output = empty_field
+        output = ({"msg": "Name must be a string. Example: johndoe"})
         return jsonify(output), 400
 
 

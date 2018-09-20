@@ -11,6 +11,7 @@ def test_post_order(client):
     assert resp.status_code == 201
     assert b'Order has been added' in resp.data
 
+
 def test_get_orders(client):
     resp = client.get(
         '/v1/orders')

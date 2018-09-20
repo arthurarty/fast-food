@@ -55,5 +55,5 @@ def test_str_quantity(client):
         "customer_name": "John",
         "item_name": "Matooke",
         "quantity": "10", })
-    assert b'Quantity must be an integer. Example: 2' in resp.data
+    assert b'Quantity must be an integer > 0. Example: 2' in resp.data
     assert resp.status_code == 400

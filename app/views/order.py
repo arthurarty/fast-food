@@ -11,12 +11,20 @@ fast_food = Restuarant()
 def post_order():
     """method to add order"""
     title = str(request.json.get('customer_name')).strip()
+    item_name = str(request.json.get('item_name')).strip()
+    quantity = str(request.json.get('quantity')).strip()
 
     if not title:
         return jsonify({"msg": "Customer field is empty"}), 400
 
+    if not item_name:
+        return jsonify({"msg": "Item_name field is empty"}), 400
+
+    if not quantity:
+        return jsonify({"msg": "Quantity field is empty"}), 400
+
     if request.json.get('customer_name'):
-        new_order = Order('Nangai', 'Chapati', '10')
+        new_order = Order(title, item_name, quantity)
         fast_food.add_order(new_order)
         return jsonify({"msg": "Order has been added"}), 201
 

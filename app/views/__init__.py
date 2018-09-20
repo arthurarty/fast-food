@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from app import create_app
 
+
 def test_str_input(text):
     """test input to be string"""
     if isinstance(text, str):
@@ -13,17 +14,17 @@ def test_str_input(text):
     else:
         return False
 
+
 def test_int_input(number):
     """test input to be int"""
     if isinstance(number, int):
         """check if int is greater than 0"""
-        if number > 0 :
+        if number > 0:
             return number
-        else: return False
+        else:
+            return False
     else:
         return False
-
-#print(test_str_input(" "))
 
 
 app = create_app()

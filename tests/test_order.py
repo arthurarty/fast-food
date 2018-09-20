@@ -11,14 +11,6 @@ def test_post_order(client):
     assert resp.status_code == 201
     assert b'Order has been added' in resp.data
 
-def test_empty_customer_name(client):
-    """post data without customer name"""
-    resp = post_json(client, '/v1/orders', {
-        "customer_name": " ",
-        "item_name": "Chapati",
-        "quantity": "5", })
-    assert resp.status_code == 400
-
 def test_get_orders(client):
     resp = client.get(
         '/v1/orders')

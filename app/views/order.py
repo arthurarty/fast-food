@@ -26,6 +26,12 @@ def post_order():
     if not isinstance(request.json.get('customer_name'), str):
         return jsonify({"msg": "Name must be a string. Example: johndoe"}), 400
 
+    if not isinstance(request.json.get('item_name'), str):
+        return jsonify({"msg": "Item name must be a string. Example: Rice"}), 400
+
+    if not isinstance(request.json.get('quantity'), int):
+        return jsonify({"msg": "Quantity must be an integer. Example: 2"}), 400
+
     if request.json.get('customer_name'):
         new_order = Order(title, item_name, quantity)
         fast_food.add_order(new_order)

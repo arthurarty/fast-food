@@ -7,7 +7,7 @@ def test_post_order(client):
     resp = post_json(client, '/v1/orders', {
         "customer_name": "Nangai",
         "item_name": "Chicken",
-        "quantity": "5", })
+        "quantity": 5, })
     assert resp.status_code == 201
     assert b'Order has been added' in resp.data
 

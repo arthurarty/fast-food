@@ -19,6 +19,7 @@ def test_empty_item_name(client):
         "quantity": "5", })
     assert resp.status_code == 400
 
+
 def test_empty_quantity(client):
     """post data without item name"""
     resp = post_json(client, '/v1/orders', {
@@ -27,11 +28,32 @@ def test_empty_quantity(client):
         "quantity": "", })
     assert resp.status_code == 400
 
+
 def test_int_customer_name(client):
-    """test status code returned when customer_name is int"""
+    """test validation for customer_name is int"""
     resp = post_json(client, '/v1/orders', {
         "customer_name": 1543,
         "item_name": "Matooke",
         "quantity": 10, })
     assert b'Name must be a string. Example: johndoe' in resp.data
+    assert resp.status_code == 400
+
+
+def test_int_item_name(client):
+    """test validation for item_name is int"""
+    resp = post_json(client, '/v1/orders', {
+        "customer_name": "John",
+        "item_name": 12,
+        "quantity": 10, })
+    assert b'Item name must be a string. Example: Rice' in resp.data
+    assert resp.status_code == 400
+
+
+def test_str_quantity(client):
+    """test validation for quantity as str"""
+    resp = post_json(client, '/v1/orders', {
+        "customer_name": "John",
+        "item_name": "Matooke",
+        "quantity": "10", })
+    assert b'Quantity must be an integer. Example: 2' in resp.data
     assert resp.status_code == 400

@@ -1,5 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/arthurarty/fast-food/badge.svg?branch=develop)](https://coveralls.io/github/arthurarty/fast-food?branch=develop)
 [![Build Status](https://travis-ci.com/arthurarty/fast-food.svg?branch=develop)](https://travis-ci.com/arthurarty/fast-food)
+[![Maintainability](https://api.codeclimate.com/v1/badges/0d7befbf06875d2ca626/maintainability)](https://codeclimate.com/github/arthurarty/fast-food/maintainability)
 ## Fast-Food-Fast 
 A food delivery service app for a restaurant.
 

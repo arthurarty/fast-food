@@ -58,6 +58,9 @@ def get_specific_order(order_id):
 def update_status(order_id):
     """method updates the status of an order"""
     status = test_str_input(request.json.get('status'))
+    if not status == 'complete':
+        return jsonify({"msg": "Status input has to be complete."}), 400
+
     if status:
         res = fast_food.update_order_status(order_id, status)
         if not res:

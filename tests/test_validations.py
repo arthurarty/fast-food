@@ -10,6 +10,7 @@ def test_empty_customer_name(client):
         "quantity": "5", })
     assert resp.status_code == 400
 
+
 def test_no_customer_name(client):
     """post data without customer_name"""
     resp = post_json(client, '/v1/orders', {
@@ -17,6 +18,7 @@ def test_no_customer_name(client):
         "quantity": "5", })
     assert b'Customer_name missing' in resp.data
     assert resp.status_code == 400
+
 
 def test_empty_item_name(client):
     """post data without with value for item name"""
@@ -26,6 +28,7 @@ def test_empty_item_name(client):
         "quantity": "5", })
     assert resp.status_code == 400
 
+
 def test_no_item_name(client):
     """post data without item_name field"""
     resp = post_json(client, '/v1/orders', {
@@ -33,6 +36,7 @@ def test_no_item_name(client):
         "quantity": "5", })
     assert b'Item_name missing' in resp.data
     assert resp.status_code == 400
+
 
 def test_empty_quantity(client):
     """post data without value for item name"""
@@ -42,11 +46,20 @@ def test_empty_quantity(client):
         "quantity": "", })
     assert resp.status_code == 400
 
+def test_zero_quantity(client):
+    """post data without value for item name"""
+    resp = post_json(client, '/v1/orders', {
+        "customer_name": "Nangai",
+        "item_name": "Matooke",
+        "quantity": 0, })
+    assert resp.status_code == 400
+
 def test_empty_status(client):
     """post data without value for item name"""
     resp = put_json(client, '/v1/orders/1/', {
         "status": " ", })
     assert resp.status_code == 400
+
 
 def test_no_quantity(client):
     """post data without quantity field"""
@@ -54,6 +67,7 @@ def test_no_quantity(client):
         "customer_name": "Nangai",
         "item_name": "Matooke", })
     assert resp.status_code == 400
+
 
 def test_int_customer_name(client):
     """test validation for customer_name is int"""

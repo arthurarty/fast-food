@@ -13,11 +13,11 @@ def post_order():
     item_name = test_str_input(request.json.get('item_name'))
     quantity = test_int_input(request.json.get('quantity'))
 
-    if not customer_name:
+    if not request.json.get('customer_name'):
         return jsonify({"msg": "Customer_name missing"}), 400
-    if not item_name:
-        return jsonify({"msg": "item_name missing"}), 400
-    if not quantity:
+    if not request.json.get('item_name'):
+        return jsonify({"msg": "Item_name missing"}), 400
+    if not request.json.get('quantity'):
         return jsonify({"msg": "Quantity is missing"}), 400
 
     if customer_name:

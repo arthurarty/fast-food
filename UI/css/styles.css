@@ -248,7 +248,7 @@ footer {
     width:100%;
 }
 main {
-    min-height: 520.5px;
+    min-height: 600.5px;
 }
 @media screen and (min-width: 1000px) {
     body {

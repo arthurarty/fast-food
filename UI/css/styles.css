@@ -233,3 +233,12 @@ nav a {
     font-size: 120%;
 }
 
+footer {
+    background-color:black;
+    color:white;
+}
+
+footer p {
+    margin-top: 0;
+    height: 40px;
+}

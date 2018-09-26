@@ -179,8 +179,11 @@ nav a {
     width:25px;
 }
 .restaurant_menu {
+    width: 600px;
     padding: 8px;
     margin:16px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .restaurant_menu i{
     color:green;

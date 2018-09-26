@@ -50,7 +50,8 @@ def get_specific_order(order_id):
 @app.route('/v1/orders/<int:order_id>/', methods=['PUT'])
 def update_status(order_id):
     """method updates the status of an order"""
-    res = fast_food.update_order_status(order_id)
+    status = request.json.get('status')
+    res = fast_food.update_order_status(order_id, status)
     if not res:
         return jsonify({'msg': 'Order not found'}), 404
     return jsonify(res), 201

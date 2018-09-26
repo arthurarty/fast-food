@@ -52,7 +52,14 @@ ul {
     border-bottom:1px solid white;
     background: transparent;
 }
-
+.add_food {
+    width: 700px;
+    margin-right: auto;
+    margin-left:auto;
+}
+.input_row {
+    padding-bottom: 16px;
+}
 .green-btn {
     color:white;
     margin-top : 10px;
@@ -119,6 +126,9 @@ a:hover {
 .right {
     text-align: right;
 }
+.center {
+    text-align:center;
+}
 /*************   nav css   **************************/
 nav {
     background-color: #1B1B1E;
@@ -139,6 +149,7 @@ nav ul {
 nav ul li{
     display: inline;
     padding-left:8px;
+    padding-right: 14px;
 }
 nav a {
     color:white;
@@ -179,8 +190,11 @@ nav a {
     width:25px;
 }
 .restaurant_menu {
+    width: 600px;
     padding: 8px;
     margin:16px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .restaurant_menu i{
     color:green;
@@ -227,3 +241,22 @@ nav a {
     font-size: 120%;
 }
 
+footer {
+    background-color:black;
+    color:white;
+    position: absolute;
+    width:100%;
+}
+main {
+    min-height: 600.5px;
+}
+@media screen and (min-width: 1000px) {
+    body {
+        min-height: 450.5px;
+    }
+}
+footer p {
+    margin-top: 0;
+    padding-top: 10px;
+    height: 30px;
+}

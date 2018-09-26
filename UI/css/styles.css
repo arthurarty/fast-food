@@ -52,7 +52,11 @@ ul {
     border-bottom:1px solid white;
     background: transparent;
 }
-
+.add_food {
+    width: 700px;
+    margin-right: auto;
+    margin-left:auto;
+}
 .green-btn {
     color:white;
     margin-top : 10px;

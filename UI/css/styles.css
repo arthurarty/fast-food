@@ -57,6 +57,9 @@ ul {
     margin-right: auto;
     margin-left:auto;
 }
+.input_row {
+    padding-bottom: 16px;
+}
 .green-btn {
     color:white;
     margin-top : 10px;
@@ -245,7 +248,7 @@ footer {
     width:100%;
 }
 main {
-    min-height: 600.5px;
+    min-height: 520.5px;
 }
 @media screen and (min-width: 1000px) {
     body {

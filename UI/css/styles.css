@@ -256,7 +256,8 @@ main {
     }
 }
 footer p {
+    font-size: 81%;
     margin-top: 0;
-    padding-top: 10px;
+    padding-top: 12px;
     height: 30px;
 }

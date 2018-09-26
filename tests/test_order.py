@@ -1,5 +1,5 @@
 import pytest
-from tests import (client, post_json)
+from tests import (client, post_json, put_json)
 
 
 def test_post_order(client):
@@ -28,6 +28,19 @@ def test_get_single_order(client):
     assert b'customer_name' in resp.data
 
 
+def test_get_wrong_order(client):
+    resp = client.get('/v1/orders/2/')
+    assert resp.status_code == 404
+    assert b'Order not found' in resp.data
+
+
 def test_update_order(client):
-    resp = client.put('/v1/orders/1/')
+    resp = put_json(client, '/v1/orders/1/', {
+        "status": "complete", })
     assert resp.status_code == 201
+
+
+def test_update_non_existing_order(client):
+    resp = put_json(client, '/v1/orders/2/', {
+        "status": "complete", })
+    assert resp.status_code == 404

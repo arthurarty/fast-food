@@ -1,5 +1,5 @@
 import pytest
-from tests import (client, post_json)
+from tests import (client, post_json, put_json)
 
 
 def test_empty_customer_name(client):
@@ -40,6 +40,12 @@ def test_empty_quantity(client):
         "customer_name": "Nangai",
         "item_name": "Matooke",
         "quantity": "", })
+    assert resp.status_code == 400
+
+def test_empty_status(client):
+    """post data without value for item name"""
+    resp = put_json(client, '/v1/orders/1/', {
+        "status": " ", })
     assert resp.status_code == 400
 
 def test_no_quantity(client):

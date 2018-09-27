@@ -8,6 +8,7 @@ def test_empty_customer_name(client):
         "customer_name": " ",
         "item_name": "Chapati",
         "quantity": "5", })
+    assert b'Name must be a string' in resp.data
     assert resp.status_code == 400
 
 
@@ -26,6 +27,7 @@ def test_empty_item_name(client):
         "customer_name": "Nangai",
         "item_name": " ",
         "quantity": "5", })
+    assert b'Item name must be a string' in resp.data
     assert resp.status_code == 400
 
 
@@ -44,6 +46,7 @@ def test_empty_quantity(client):
         "customer_name": "Nangai",
         "item_name": "Matooke",
         "quantity": "", })
+    assert b'Quantity is missing' in resp.data
     assert resp.status_code == 400
 
 def test_zero_quantity(client):
@@ -52,12 +55,14 @@ def test_zero_quantity(client):
         "customer_name": "Nangai",
         "item_name": "Matooke",
         "quantity": 0, })
+    assert b'Quantity is missing' in resp.data
     assert resp.status_code == 400
 
 def test_empty_status(client):
     """post data without value for item name"""
     resp = put_json(client, '/v1/orders/1/', {
         "status": " ", })
+    assert b'Status input has to be complete' in resp.data
     assert resp.status_code == 400
 
 
@@ -66,6 +71,7 @@ def test_no_quantity(client):
     resp = post_json(client, '/v1/orders', {
         "customer_name": "Nangai",
         "item_name": "Matooke", })
+    assert b'Quantity is missing' in resp.data
     assert resp.status_code == 400
 
 

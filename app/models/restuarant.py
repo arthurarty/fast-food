@@ -16,11 +16,16 @@ class Restuarant:
 
     def get_single_order(self, id):
         """return a specific order"""
+        if id > len(self.orders):
+            return False
         index = id - 1
         return self.orders[index]
 
-    def update_order_status(self, id):
+    def update_order_status(self, id, status):
         """update the status of an order"""
+        if id > len(self.orders):
+            return False
         index = id - 1
-        self.orders[index]['status'] = 'complete'
+
+        self.orders[index]['status'] = status
         return self.orders[index]

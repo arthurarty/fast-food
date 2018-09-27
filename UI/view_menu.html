@@ -15,7 +15,7 @@
     <!-- top navigation -->
     <nav class="row">
         <div class="col-2">
-            <h2 id="company_name">Fast Food Fast</h2>
+            <a href="view_menu.html"><h2 id="company_name">Fast Food Fast</h2></a>
         </div>
         <div class="col-2 right"><!-- column open-->
             <ul>
@@ -37,15 +37,15 @@
                 <!-- restuarant menu-->
                 <div class="restaurant_menu"> 
                     <div class="food_item">
-                        <h3>Chapati</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <p class="right">
-                            Pricing : 1500/= <br>
-                        </p>
+                        <div class="row">
+                                <div class="col-2">
+                                    <h3>Sausage</h3>
+                                </div>
+                                <div class="col-2">
+                                    <h3>Pricing : 1500/=</h3>
+                                </div>
+                            </div>
+                        <p>A chapati served with a meat gravel to give it that amazing yet nutrious taste.</p>
                         <form class="quantity_form" action="confirm_order.html" method="get">
                             <input type="number" name="quantity" placeholder="0" class="form_input" min="1"> 
                             <input type="submit" class="blue-btn" value="Order">
@@ -53,15 +53,15 @@
                     </div>
 
                     <div class="food_item">
-                            <h3>Chapati</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            <p class="right">
-                                Pricing : 1500/= <br>
-                            </p>
+                            <div class="row">
+                                <div class="col-2">
+                                    <h3>Sausage</h3>    
+                                </div>
+                                <div class="col-2">
+                                    <h3>Pricing : 1500/=</h3>
+                                </div>
+                            </div>
+                            <p>A pair of well grilled sausages.</p> 
                             <form class="quantity_form" action="confirm_order.html" method="get">
                                 <input type="number" name="quantity" placeholder="0" class="form_input" min="1"> 
                                 <input type="submit" class="blue-btn" value="Order">
@@ -74,5 +74,8 @@
             </div>
         </div>
     </main>
+    <footer>
+        <p class="center">Fast Food Fast LLC</p>
+    </footer>
 </body>
 </html>

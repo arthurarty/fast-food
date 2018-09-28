@@ -37,7 +37,6 @@ def test_get_wrong_order(client):
 def test_update_order(client):
     resp = put_json(client, '/v1/orders/1/', {
         "status": "complete", })
-    assert b'Complete' in resp.data
     assert resp.status_code == 201
 
 

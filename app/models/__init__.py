@@ -44,16 +44,25 @@ class Database:
         """method creates the tables needed for the application"""
         self.create_table('users', "user_id SERIAL PRIMARY KEY, email text " +
                           " NOT NULL UNIQUE, name text NOT NULL, password text NOT NULL, role int NOT NULL")
+        self.create_table('menu', "menu_id SERIAL PRIMARY KEY, name text " +
+                          " NOT NULL UNIQUE, description text NOT NULL, price int NOT NULL")
 
     def check_tables(self):
         self.cursor.execute("select exists(select * from information_schema.tables where table_name=%s)", ('users',))
         return self.cursor.fetchone()[0]
-
+  
     def query_single(self, email):
         """returns a user given the user's email"""
         self.cursor.execute("SELECT * FROM users WHERE email = '%s'" % (email))
         item = self.cursor.fetchone()
         return item
+
+    def query_entire_table(self, table_name):
+        """returns all records in table"""
+        self.cursor.execute("SELECT row_to_json(row) FROM (SELECT * FROM %s) row" %
+                            (table_name))
+        items = self.cursor.fetchall()
+        return items
 
     def query_single_row(self, table_name, table_column, row_id):
         """returns a single row from table_name where table_column = row_id"""

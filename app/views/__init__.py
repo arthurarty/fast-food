@@ -38,5 +38,8 @@ if not db_conn.check_tables():
 #import auth views 
 from app.views import auth
 
+#import menu views
+from app.views import menu
+
 # import order views
 from app.views import order

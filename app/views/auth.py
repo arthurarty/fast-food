@@ -28,7 +28,11 @@ def add_user():
         return jsonify({"msg": "Name field is empty"}), 400
     password = str(request.json.get('password')).strip()
 
-    if email and name and password:
+    role = request.json.get('role')
+    if not role:
+        return jsonify({"msg":"Role field is empty"}), 400
+    
+    if email and name and password and role:
         if not re.match(r'^[a-zA-Z0-9_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email):
             return jsonify({"msg": "Invalid email. Example: john@exam.com"}), 400
 
@@ -44,7 +48,7 @@ def add_user():
         if len(password) > 12:
             return jsonify({"msg": "Password too long, max 12"}), 400
 
-        new_user = User(email, name, generate_password_hash(password), 0)
+        new_user = User(email, name, generate_password_hash(password), role)
         return new_user.insert_new_record()
 
     return jsonify({"msg": "empty field"}), 400

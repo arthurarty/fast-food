@@ -17,7 +17,7 @@ def client():
 def database():
     db_conn = Database()
     yield db_conn
-    db_conn.drop_table('users')
+    db_conn.drop_all_tables()
 
 
 def post_json(client, url, json_dict):
@@ -41,6 +41,19 @@ def signin(client):
     resp = post_json(client, '/v1/auth/login', {
         "email": "test@test.com",
         "password": "testAs1v"})
+    access = json_of_response(resp)
+    access_token = access[1]['access_token']
+    return access_token
+
+def user_two(client):
+    resp = post_json(client, '/v1/auth/signup', {
+        "email": "user@test.com",
+        "name": "user",
+        "password": "userIs4a",
+        "role":"False"})
+    resp = post_json(client, '/v1/auth/login', {
+        "email": "user@test.com",
+        "password": "userIs4a"})
     access = json_of_response(resp)
     access_token = access[1]['access_token']
     return access_token

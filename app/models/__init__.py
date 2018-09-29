@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 import psycopg2
 import os
 
+
 class Database:
     def __init__(self):
         try:
@@ -47,10 +48,15 @@ class Database:
         self.create_table('menu', "menu_id SERIAL PRIMARY KEY, name text " +
                           " NOT NULL UNIQUE, description text NOT NULL, price int NOT NULL")
 
+    def drop_all_tables(self):
+        self.drop_table('users')
+        self.drop_table('menu')
+
     def check_tables(self):
-        self.cursor.execute("select exists(select * from information_schema.tables where table_name=%s)", ('users',))
+        self.cursor.execute(
+            "select exists(select * from information_schema.tables where table_name=%s)", ('users',))
         return self.cursor.fetchone()[0]
-  
+
     def query_single(self, email):
         """returns a user given the user's email"""
         self.cursor.execute("SELECT * FROM users WHERE email = '%s'" % (email))
@@ -93,7 +99,7 @@ class Database:
         return item
 
 #db = Database()
-#db.create_all_tables()
+# db.create_all_tables()
 # if not db.check_tables():
 #     db.create_all_tables()
 

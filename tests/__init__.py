@@ -17,7 +17,7 @@ def client():
 def database():
     db_conn = Database()
     yield db_conn
-    db_conn.drop_table('users')
+    db_conn.drop_all_tables()
 
 
 def post_json(client, url, json_dict):

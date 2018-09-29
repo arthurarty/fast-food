@@ -11,7 +11,7 @@ class Menu(Database):
 
     def insert_new_food(self, food):
         """method creates a single table"""
-        insert_command = "INSERT INTO menu(name, description, price) Values ('%s', '%s', '%s);" % (
+        insert_command = "INSERT INTO menu(name, description, price) Values ('%s', '%s', %s);" % (
             food.name, food.description, food.price)
         self.cursor.execute(insert_command)
 

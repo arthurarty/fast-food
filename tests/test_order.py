@@ -43,4 +43,5 @@ def test_update_order(client):
 def test_update_non_existing_order(client):
     resp = put_json(client, '/v1/orders/2/', {
         "status": "complete", })
+    assert b'Order not found' in resp.data
     assert resp.status_code == 404

@@ -57,7 +57,7 @@ def get_specific_order(order_id):
 @app.route('/v1/orders/<int:order_id>/', methods=['PUT'])
 def update_status(order_id):
     """method updates the status of an order"""
-    status = test_str_input(request.json.get('status'))
+    status = request.json.get('status')
     if not status == 'complete':
         return jsonify({"msg": "Status input has to be complete."}), 400
 

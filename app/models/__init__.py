@@ -31,7 +31,7 @@ class Database:
 
     def create_table(self, table_name, table_columns):
         """method creates a single table"""
-        create_table_command = "CREATE TABLE %s(%s);" % (
+        create_table_command = "CREATE TABLE IF NOT EXISTS %s(%s);" % (
             table_name, table_columns)
         self.cursor.execute(create_table_command)
 
@@ -83,7 +83,8 @@ class Database:
         item = self.cursor.fetchone()
         return item
 
-# db = Database()
+#db = Database()
+#db.create_all_tables()
 # if not db.check_tables():
 #     db.create_all_tables()
 

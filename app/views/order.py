@@ -2,11 +2,12 @@ from app.views import app, test_str_input, test_int_input
 from app.models.order import Order
 from app.models.restuarant import Restuarant
 from flask import Flask, jsonify, request
-
+from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
 fast_food = Restuarant()
 
 
 @app.route('/v1/orders', methods=['POST'])
+@jwt_required
 def post_order():
     """method to add order"""
     customer_name = test_str_input(request.json.get('customer_name'))
@@ -38,6 +39,7 @@ def post_order():
 
 
 @app.route('/v1/orders', methods=['GET'])
+@jwt_required
 def get_orders():
     """method returns all orders"""
     res = fast_food.get_orders()
@@ -45,6 +47,7 @@ def get_orders():
 
 
 @app.route('/v1/orders/<int:order_id>/', methods=['GET'])
+@jwt_required
 def get_specific_order(order_id):
     """method returns specific order"""
     res = fast_food.get_single_order(order_id)
@@ -55,6 +58,7 @@ def get_specific_order(order_id):
 
 
 @app.route('/v1/orders/<int:order_id>/', methods=['PUT'])
+@jwt_required
 def update_status(order_id):
     """method updates the status of an order"""
     status = request.json.get('status')

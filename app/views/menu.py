@@ -19,9 +19,9 @@ def post_menu():
     price = test_int_input(request.json.get('price'))
 
     if not request.json.get('food_name'):
-        return jsonify({"msg": "Food_name missing"}), 400
+        return jsonify({"msg": "Food_name is missing"}), 400
     if not request.json.get('desc'):
-        return jsonify({"msg": "Desc missing"}), 400
+        return jsonify({"msg": "Desc is missing"}), 400
     if not request.json.get('price'):
         return jsonify({"msg": "Price is missing"}), 400
 
@@ -34,7 +34,7 @@ def post_menu():
                 return jsonify({"msg": "Price must be an integer > 0. Example: 2"}), 400
 
         else:
-            return jsonify({"msg": "Description name must be a string. Example: Well done matooke."}), 400
+            return jsonify({"msg": "Desc name must be a string. Example: Well done matooke."}), 400
         return jsonify({"msg": "Food has been added"}), 201
 
     else:

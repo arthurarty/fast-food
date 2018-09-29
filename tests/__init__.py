@@ -44,3 +44,16 @@ def signin(client):
     access = json_of_response(resp)
     access_token = access[1]['access_token']
     return access_token
+
+def user_two(client):
+    resp = post_json(client, '/v1/auth/signup', {
+        "email": "user@test.com",
+        "name": "user",
+        "password": "userIs4a",
+        "role":"False"})
+    resp = post_json(client, '/v1/auth/login', {
+        "email": "user@test.com",
+        "password": "userIs4a"})
+    access = json_of_response(resp)
+    access_token = access[1]['access_token']
+    return access_token

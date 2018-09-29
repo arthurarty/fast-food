@@ -44,7 +44,7 @@ class Database:
     def create_all_tables(self):
         """method creates the tables needed for the application"""
         self.create_table('users', "user_id SERIAL PRIMARY KEY, email text " +
-                          " NOT NULL UNIQUE, name text NOT NULL, password text NOT NULL, role int NOT NULL")
+                          " NOT NULL UNIQUE, name text NOT NULL, password text NOT NULL, role boolean NOT NULL")
         self.create_table('menu', "menu_id SERIAL PRIMARY KEY, name text " +
                           " NOT NULL UNIQUE, description text NOT NULL, price int NOT NULL")
 

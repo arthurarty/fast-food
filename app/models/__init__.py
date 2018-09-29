@@ -8,7 +8,7 @@ import os
 class Database:
     def __init__(self):
         try:
-            if os.getenv == 'development':
+            if os.environ['FLASK_ENV'] == 'development':
                 result = urlparse("postgresql://localhost/test")
             else:
                 result = urlparse("postgresql://localhost/fastfood")

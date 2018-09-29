@@ -6,7 +6,6 @@ services:
 before_script:
 - pip3 install -r requirements.txt
 - psql -c 'create database test;' -U postgres
-- psql -c 'create database fastfood;' -U postgres
 - export FLASK_ENV=development
 script:
 - pytest -v --cov app --cov-report term-missing

@@ -29,8 +29,3 @@ class Orders(Database):
         """get all orders from database"""
         return self.query_entire_table('orders')
 
-    def get_single_order(self, id):
-        pass
-
-    def update_order_status(self, id, status):
-        pass

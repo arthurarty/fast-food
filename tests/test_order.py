@@ -58,6 +58,13 @@ def test_update_order(client):
         headers={'Authorization': 'Bearer ' + signin(client)})
     assert resp.status_code == 201
 
+def test_update_order_by_user(client):
+    """test to ensure users cant view specific order"""
+    resp = put_json(client, '/v1/orders/1/', {
+        "status": "Complete", },
+        headers={'Authorization': 'Bearer ' + user_two(client)})
+    assert resp.status_code == 401
+    assert b'Not authorized' in resp.data
 
 def test_update_non_existing_order(client):
     resp = put_json(client, '/v1/orders/2/', {

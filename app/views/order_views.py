@@ -56,6 +56,9 @@ def get_specific_order(order_id):
 @jwt_required
 def update_status(order_id):
     """method updates the status of an order"""
+    current_user = get_jwt_identity()
+    if not current_user['user_role']:
+        return jsonify({'msg':'Not authorized'}), 401
     status = request.json.get('status')
     if status  not in ['Processing', 'Cancelled', 'Complete']:
         return jsonify({"msg": "Status input has to be Processing, Cancelled or Complete."}), 400

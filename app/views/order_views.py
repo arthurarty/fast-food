@@ -1,4 +1,5 @@
-from app.views import app, test_str_input, test_int_input
+from app.views import app
+from app.utilities import test_str_input, test_int_input
 from app.models.order import Order
 from app.models.orders import Orders
 from flask import Flask, jsonify, request
@@ -26,6 +27,12 @@ def post_order():
     else:
         return jsonify({"msg": "Menu_id and Quantity must be integers > 0. Example: 2"}), 400
 
+@app.route('/v1/users/orders', methods=['GET'])
+@jwt_required
+def get_user_history():
+    """method returns users history"""
+    current_user = get_jwt_identity()
+    return jsonify(orders.get_orders_by_userid(current_user['user_id'])), 200
 
 @app.route('/v1/orders', methods=['GET'])
 @jwt_required
@@ -56,6 +63,9 @@ def get_specific_order(order_id):
 @jwt_required
 def update_status(order_id):
     """method updates the status of an order"""
+    current_user = get_jwt_identity()
+    if not current_user['user_role']:
+        return jsonify({'msg':'Not authorized'}), 401
     status = request.json.get('status')
     if status  not in ['Processing', 'Cancelled', 'Complete']:
         return jsonify({"msg": "Status input has to be Processing, Cancelled or Complete."}), 400

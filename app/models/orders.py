@@ -37,15 +37,21 @@ class Orders(Database):
         """update the staus of an order"""
         update_command = "Update orders SET status = '%s' WHERE order_id = '%s'" % (
             status, order_id)
-        
         try:
             self.cursor.execute(
                 "SELECT row_to_json(row) FROM (SELECT * FROM orders WHERE order_id = %s) row;" % (order_id))
             items = self.cursor.fetchone()
             if items:
                 self.cursor.execute(update_command)
-                return jsonify({"msg":"Order updated"}), 201
+                return jsonify({"msg": "Order updated"}), 201
             else:
-                return jsonify({"msg":"Order not found"}), 404
+                return jsonify({"msg": "Order not found"}), 404
         except:
-            return jsonify({"msg":"Error"}), 404
+            return jsonify({"msg": "Error"}), 404
+
+    def get_orders_by_userid(self, user_id):
+        """return all orders belonging to a particular user"""
+        select_command = "SELECT row_to_json(row) FROM (SELECT * FROM orders WHERE user_id = %s) row;" % (
+            user_id)
+        self.cursor.execute(select_command)
+        return self.cursor.fetchall()

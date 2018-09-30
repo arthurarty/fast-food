@@ -8,6 +8,6 @@ class Order:
         self.menu_id = menu_id
         self.user_id= user_id
         self.quantity = quantity
-        self.status = 'incomplete'
+        self.status = 'New'
         self.created_at = datetime.now()
 

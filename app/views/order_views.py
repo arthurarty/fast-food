@@ -10,32 +10,19 @@ orders = Orders()
 @jwt_required
 def post_order():
     """method to add order"""
-    customer_name = test_str_input(request.json.get('customer_name'))
-    item_name = test_str_input(request.json.get('item_name'))
+    current_user = get_jwt_identity()
+    menu_id = test_int_input(request.json.get('menu_id'))
     quantity = test_int_input(request.json.get('quantity'))
 
-    if not request.json.get('customer_name'):
-        return jsonify({"msg": "Customer_name missing"}), 400
-    if not request.json.get('item_name'):
-        return jsonify({"msg": "Item_name missing"}), 400
     if not request.json.get('quantity'):
         return jsonify({"msg": "Quantity is missing"}), 400
 
-    if customer_name:
-        if item_name:
-            if quantity:
-                new_order = Order(customer_name, item_name, quantity)
-                orders.add_order(new_order)
-            else:
-                return jsonify({"msg": "Quantity must be an integer > 0. Example: 2"}), 400
-
-        else:
-            return jsonify({"msg": "Item name must be a string. Example: Rice"}), 400
-        return jsonify({"msg": "Order has been added"}), 201
-
+    if quantity and menu_id:
+        new_order = Order( menu_id, current_user['user_id'], quantity)
+        return orders.add_order(new_order)
     else:
-        output = ({"msg": "Name must be a string. Example: johndoe"})
-        return jsonify(output), 400
+        return jsonify({"msg": "Quantity must be an integer > 0. Example: 2"}), 400
+
 
 
 # @app.route('/v1/orders', methods=['GET'])

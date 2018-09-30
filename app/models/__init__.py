@@ -49,7 +49,7 @@ class Database:
                           " NOT NULL UNIQUE, description text NOT NULL, price int NOT NULL")
         self.create_table('orders', "order_id SERIAL PRIMARY KEY, menu_id INT NOT NULL " + 
                           "REFERENCES menu(menu_id), user_id INT NOT NULL " + 
-                          "REFERENCES users(user_id)")
+                          "REFERENCES users(user_id), quantity INT NOT NULL, created_at Date NOT NULL, updated_at Date")
 
     def drop_all_tables(self):
         self.drop_table('orders')

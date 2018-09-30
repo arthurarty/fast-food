@@ -1,17 +1,13 @@
+from datetime import datetime
+
 class Order:
     """Class Order represents an order placed by a customer"""
 
-    def __init__(self, customer_name, item_name, quantity):
+    def __init__(self, menu_id, user_id, quantity):
         """initiate an instance of class Order"""
-        self.customer_name = customer_name
-        self.item_name = item_name
+        self.menu_id = menu_id
+        self.user_id= user_id
         self.quantity = quantity
         self.status = 'incomplete'
+        self.created_at = datetime.now()
 
-    def get_customer_name(self):
-        """method returns customer name"""
-        return self.customer_name
-
-    def get_item_name(self):
-        """method returns item name"""
-        return self.item_name

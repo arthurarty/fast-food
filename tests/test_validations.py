@@ -39,10 +39,10 @@ def test_str_quantity(client):
     assert resp.status_code == 400
 
 
-# def test_empty_status(client):
-#     """post data without value for item name"""
-#     resp = put_json(client, '/v1/orders/1/', {
-#         "status": " ", },
-#         headers={'Authorization': 'Bearer ' + signin(client)})
-#     assert b'Status input has to be complete' in resp.data
-#     assert resp.status_code == 400
+def test_update_empty_status(client):
+    resp = put_json(client, '/v1/orders/1/', {
+        "status": " ", },
+        headers={'Authorization': 'Bearer ' + signin(client)})
+    assert b'Status input has to be complete.' in resp.data
+    assert resp.status_code == 400
+

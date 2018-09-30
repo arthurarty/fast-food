@@ -4,7 +4,7 @@ from tests import (client, post_json, put_json, post_json_header, signin, user_t
 
 def test_post_order(client):
     """test posting order"""
-    resp = post_json_header(client, '/v1/orders', {
+    resp = post_json_header(client, '/v1/users/orders', {
         "menu_id": 1,
         "quantity": 15},
         headers={'Authorization': 'Bearer ' + signin(client)})
@@ -13,7 +13,7 @@ def test_post_order(client):
 
 def test_post_order_wrong_menu_id(client):
     """test posting order"""
-    resp = post_json_header(client, '/v1/orders', {
+    resp = post_json_header(client, '/v1/users/orders', {
         "menu_id": 2,
         "quantity": 15},
         headers={'Authorization': 'Bearer ' + signin(client)})

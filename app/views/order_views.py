@@ -6,7 +6,7 @@ from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
 orders = Orders()
 
 
-@app.route('/v1/orders', methods=['POST'])
+@app.route('/v1/users/orders', methods=['POST'])
 @jwt_required
 def post_order():
     """method to add order"""

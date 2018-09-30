@@ -1,4 +1,4 @@
-class Restuarant:
+class Orders:
     """a restuarant has several orders stored in a list """
 
     def __init__(self):

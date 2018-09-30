@@ -1,4 +1,5 @@
-from app.views import app, test_str_input, test_int_input
+from app.views import app
+from app.utilities import test_str_input, test_int_input
 from app.models.menu import Menu
 from app.models.food import Food
 from flask import Flask, jsonify, request

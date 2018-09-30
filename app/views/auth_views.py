@@ -7,6 +7,7 @@ from flask_jwt_extended import (JWTManager, create_access_token,
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from app.views import app
+from app.utilities import test_str_input, test_int_input
 from app.views import db_conn
 
 

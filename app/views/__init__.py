@@ -36,10 +36,10 @@ if not db_conn.check_tables():
     db_conn.create_all_tables()
 
 #import auth views 
-from app.views import auth
+from app.views import auth_views
 
 #import menu views
-from app.views import menu
+from app.views import menu_views
 
 # import order views
-from app.views import order
+from app.views import order_views

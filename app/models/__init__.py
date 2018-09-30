@@ -47,15 +47,26 @@ class Database:
                           " NOT NULL UNIQUE, name text NOT NULL, password text NOT NULL, role boolean NOT NULL")
         self.create_table('menu', "menu_id SERIAL PRIMARY KEY, name text " +
                           " NOT NULL UNIQUE, description text NOT NULL, price int NOT NULL")
+        self.create_table('orders', "order_id SERIAL PRIMARY KEY, menu_id INT NOT NULL " + 
+                          "REFERENCES menu(menu_id), user_id INT NOT NULL " + 
+                          "REFERENCES users(user_id), quantity INT NOT NULL, created_at Date NOT NULL, updated_at Date")
 
     def drop_all_tables(self):
+        self.drop_table('orders')
         self.drop_table('users')
         self.drop_table('menu')
 
-    def check_tables(self):
+    def check_table(self, table_name):
+        """check if a table exists in the database"""
         self.cursor.execute(
-            "select exists(select * from information_schema.tables where table_name=%s)", ('users',))
+            "select exists(select * from information_schema.tables where table_name='%s')" % (table_name))
         return self.cursor.fetchone()[0]
+        
+    def check_tables(self):
+        """check if all required tables are present"""
+        self.check_table('users')
+        self.check_table('menu')
+        self.check_table('orders')
 
     def query_single(self, email):
         """returns a user given the user's email"""

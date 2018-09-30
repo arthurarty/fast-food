@@ -86,8 +86,4 @@ def login():
             output = {'message': 'Successful login'}
             access_token_output = {'access_token': "%s" % (access_token)}
             return jsonify(output, access_token_output), 200
-
-    output = {"msg": "Bad username or password"}
-    resp = jsonify(output)
-    resp.status_code = 200
-    return resp
+    return jsonify({"msg":"Bad username or password"}), 200

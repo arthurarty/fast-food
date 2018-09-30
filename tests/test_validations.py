@@ -43,6 +43,6 @@ def test_update_empty_status(client):
     resp = put_json(client, '/v1/orders/1/', {
         "status": " ", },
         headers={'Authorization': 'Bearer ' + signin(client)})
-    assert b'Status input has to be complete.' in resp.data
+    assert b'Status input has to be Processing, Cancelled or Complete' in resp.data
     assert resp.status_code == 400
 

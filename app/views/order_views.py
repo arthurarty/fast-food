@@ -57,8 +57,8 @@ def get_specific_order(order_id):
 def update_status(order_id):
     """method updates the status of an order"""
     status = request.json.get('status')
-    if not status == 'Completed':
-        return jsonify({"msg": "Status input has to be complete."}), 400
+    if status  not in ['Processing', 'Cancelled', 'Complete']:
+        return jsonify({"msg": "Status input has to be Processing, Cancelled or Complete."}), 400
 
     if status:
         res = orders.update_order_status(order_id, status)

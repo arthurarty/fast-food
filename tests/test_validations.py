@@ -4,7 +4,7 @@ from tests import (client, post_json, put_json, post_json_header, signin)
 
 def test_zero_menu_id(client):
     """post data without value customer name"""
-    resp = post_json_header(client, '/v1/orders', {
+    resp = post_json_header(client, '/v1/users/orders', {
         "menu_id": 0,
         "quantity": 15},
         headers={'Authorization': 'Bearer ' + signin(client)})
@@ -13,7 +13,7 @@ def test_zero_menu_id(client):
 
 def test_str_menu_id(client):
     """post data without value customer name"""
-    resp = post_json_header(client, '/v1/orders', {
+    resp = post_json_header(client, '/v1/users/orders', {
         "menu_id": "1",
         "quantity": 15},
         headers={'Authorization': 'Bearer ' + signin(client)})
@@ -22,7 +22,7 @@ def test_str_menu_id(client):
 
 def test_zero_quantity(client):
     """post data without value customer name"""
-    resp = post_json_header(client, '/v1/orders', {
+    resp = post_json_header(client, '/v1/users/orders', {
         "menu_id": 1,
         "quantity": 0},
         headers={'Authorization': 'Bearer ' + signin(client)})
@@ -31,7 +31,7 @@ def test_zero_quantity(client):
 
 def test_str_quantity(client):
     """post data without value customer name"""
-    resp = post_json_header(client, '/v1/orders', {
+    resp = post_json_header(client, '/v1/users/orders', {
         "menu_id": 1,
         "quantity": "12"},
         headers={'Authorization': 'Bearer ' + signin(client)})

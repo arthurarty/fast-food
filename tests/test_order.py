@@ -52,16 +52,16 @@ def test_get_wrong_order(client):
     assert b'Order not found' in resp.data
 
 
-# def test_update_order(client):
-#     resp = put_json(client, '/v1/orders/1/', {
-#         "status": "complete", },
-#         headers={'Authorization': 'Bearer ' + signin(client)})
-#     assert resp.status_code == 201
+def test_update_order(client):
+    resp = put_json(client, '/v1/orders/1/', {
+        "status": "Complete", },
+        headers={'Authorization': 'Bearer ' + signin(client)})
+    assert resp.status_code == 201
 
 
-# def test_update_non_existing_order(client):
-#     resp = put_json(client, '/v1/orders/2/', {
-#         "status": "complete", },
-#         headers={'Authorization': 'Bearer ' + signin(client)})
-#     assert b'Order not found' in resp.data
-#     assert resp.status_code == 404
+def test_update_non_existing_order(client):
+    resp = put_json(client, '/v1/orders/2/', {
+        "status": "Complete", },
+        headers={'Authorization': 'Bearer ' + signin(client)})
+    assert b'Order not found' in resp.data
+    assert resp.status_code == 404

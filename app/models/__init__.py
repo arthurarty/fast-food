@@ -47,9 +47,10 @@ class Database:
                           " NOT NULL UNIQUE, name text NOT NULL, password text NOT NULL, role boolean NOT NULL")
         self.create_table('menu', "menu_id SERIAL PRIMARY KEY, name text " +
                           " NOT NULL UNIQUE, description text NOT NULL, price int NOT NULL")
-        self.create_table('orders', "order_id SERIAL PRIMARY KEY, menu_id INT NOT NULL " + 
-                          "REFERENCES menu(menu_id), user_id INT NOT NULL " + 
-                          "REFERENCES users(user_id), quantity INT NOT NULL, created_at Date NOT NULL, updated_at Date")
+        self.create_table('orders', "order_id SERIAL PRIMARY KEY, menu_id INT NOT NULL " +
+                          "REFERENCES menu(menu_id), user_id INT NOT NULL " +
+                          "REFERENCES users(user_id), quantity INT NOT NULL, " +
+                          "status text, created_at Date NOT NULL, updated_at Date")
 
     def drop_all_tables(self):
         self.drop_table('orders')
@@ -61,7 +62,7 @@ class Database:
         self.cursor.execute(
             "select exists(select * from information_schema.tables where table_name='%s')" % (table_name))
         return self.cursor.fetchone()[0]
-        
+
     def check_tables(self):
         """check if all required tables are present"""
         self.check_table('users')
@@ -108,12 +109,3 @@ class Database:
             "SELECT role FROM users WHERE email = '%s'" % (email))
         item = self.cursor.fetchone()
         return item
-
-#db = Database()
-# db.create_all_tables()
-# if not db.check_tables():
-#     db.create_all_tables()
-
-#item = db.return_password("arthur@truit.com")
-# print(item[0])
-# print(db.return_user_id_question(2))

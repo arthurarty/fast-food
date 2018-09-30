@@ -52,18 +52,16 @@ def get_specific_order(order_id):
     return jsonify(res), 200
 
 
-# @app.route('/v1/orders/<int:order_id>/', methods=['PUT'])
-# @jwt_required
-# def update_status(order_id):
-#     """method updates the status of an order"""
-#     status = request.json.get('status')
-#     if not status == 'complete':
-#         return jsonify({"msg": "Status input has to be complete."}), 400
+@app.route('/v1/orders/<int:order_id>/', methods=['PUT'])
+@jwt_required
+def update_status(order_id):
+    """method updates the status of an order"""
+    status = request.json.get('status')
+    if status  not in ['Processing', 'Cancelled', 'Complete']:
+        return jsonify({"msg": "Status input has to be Processing, Cancelled or Complete."}), 400
 
-#     if status:
-#         res = fast_food.update_order_status(order_id, status)
-#         if not res:
-#             return jsonify({'msg': 'Order not found'}), 404
-#         return jsonify(res), 201
-#     else:
-#         return jsonify({"msg": "Status must be a string. Example: complete"}), 400
+    if status:
+        res = orders.update_order_status(order_id, status)
+        return res
+    else:
+        return jsonify({"msg": "Status must be a string. Example: complete"}), 400

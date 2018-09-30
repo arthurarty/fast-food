@@ -11,11 +11,19 @@ def test_post_order(client):
     assert resp.status_code == 201
     assert b'Order successfully added' in resp.data
 
+def test_post_order_wrong_menu_id(client):
+    """test posting order"""
+    resp = post_json_header(client, '/v1/orders', {
+        "menu_id": 2,
+        "quantity": 15},
+        headers={'Authorization': 'Bearer ' + signin(client)})
+    assert resp.status_code == 404
+    assert b'Menu Item does not exist' in resp.data
 
-# def test_get_orders(client):
-#     resp = client.get(
-#         '/v1/orders', headers={'Authorization': 'Bearer ' + signin(client)})
-#     assert resp.status_code == 200
+def test_get_orders(client):
+    resp = client.get(
+        '/v1/orders', headers={'Authorization': 'Bearer ' + signin(client)})
+    assert resp.status_code == 200
 
 
 # def test_get_single_order(client):

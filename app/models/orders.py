@@ -3,6 +3,7 @@ import psycopg2
 import json
 from flask import jsonify
 
+
 class Orders(Database):
     """a restuarant has several orders stored in a list """
 
@@ -25,10 +26,11 @@ class Orders(Database):
             return jsonify({"msg": "Menu Item does not exist"}), 404
 
     def get_orders(self):
-        pass
+        """get all orders from database"""
+        return self.query_entire_table('orders')
 
     def get_single_order(self, id):
-      pass
+        pass
 
     def update_order_status(self, id, status):
         pass

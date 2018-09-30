@@ -16,21 +16,26 @@ def post_order():
 
     if not request.json.get('quantity'):
         return jsonify({"msg": "Quantity is missing"}), 400
+    
+    if not request.json.get('menu_id'):
+        return jsonify({"msg":"Menu_id is missing"}), 400
 
     if quantity and menu_id:
         new_order = Order( menu_id, current_user['user_id'], quantity)
         return orders.add_order(new_order)
     else:
-        return jsonify({"msg": "Quantity must be an integer > 0. Example: 2"}), 400
+        return jsonify({"msg": "Menu_id and Quantity must be integers > 0. Example: 2"}), 400
 
 
-
-# @app.route('/v1/orders', methods=['GET'])
-# @jwt_required
-# def get_orders():
-#     """method returns all orders"""
-#     res = fast_food.get_orders()
-#     return jsonify(res), 200
+@app.route('/v1/orders', methods=['GET'])
+@jwt_required
+def get_orders():
+    """method returns all orders"""
+    current_user = get_jwt_identity()
+    if not current_user['user_role']:
+        return jsonify({'msg':'Not authorized'}), 401
+    res = orders.get_orders()
+    return jsonify(res), 200
 
 
 # @app.route('/v1/orders/<int:order_id>/', methods=['GET'])

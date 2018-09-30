@@ -1,5 +1,5 @@
 import pytest
-from tests import (client, post_json, put_json, post_json_header, signin)
+from tests import (client, post_json, put_json, post_json_header, signin, user_two)
 
 
 def test_post_order(client):
@@ -20,11 +20,15 @@ def test_post_order_wrong_menu_id(client):
     assert resp.status_code == 404
     assert b'Menu Item does not exist' in resp.data
 
-def test_get_orders(client):
+def test_get_orders_by_admin(client):
     resp = client.get(
         '/v1/orders', headers={'Authorization': 'Bearer ' + signin(client)})
     assert resp.status_code == 200
 
+def test_get_orders_by_user(client):
+    resp = client.get(
+        '/v1/orders', headers={'Authorization': 'Bearer ' + user_two(client)})
+    assert resp.status_code == 401
 
 # def test_get_single_order(client):
 #     """test get single order"""

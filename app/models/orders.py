@@ -29,3 +29,6 @@ class Orders(Database):
         """get all orders from database"""
         return self.query_entire_table('orders')
 
+    def get_single_order(self, order_id):
+        """return a single from the database"""
+        return self.query_single_row('orders', 'order_id', order_id)

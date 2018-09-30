@@ -38,15 +38,18 @@ def get_orders():
     return jsonify(res), 200
 
 
-# @app.route('/v1/orders/<int:order_id>/', methods=['GET'])
-# @jwt_required
-# def get_specific_order(order_id):
-#     """method returns specific order"""
-#     res = fast_food.get_single_order(order_id)
-#     if not res:
-#         return jsonify({'msg': 'Order not found'}), 404
+@app.route('/v1/orders/<int:order_id>/', methods=['GET'])
+@jwt_required
+def get_specific_order(order_id):
+    """method returns specific order"""
+    current_user = get_jwt_identity()
+    if not current_user['user_role']:
+        return jsonify({'msg':'Not authorized'}), 401
+    res = orders.get_single_order(order_id)
+    if not res:
+        return jsonify({'msg': 'Order not found'}), 404
 
-#     return jsonify(res), 200
+    return jsonify(res), 200
 
 
 # @app.route('/v1/orders/<int:order_id>/', methods=['PUT'])

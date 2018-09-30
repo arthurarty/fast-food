@@ -53,4 +53,5 @@ class Orders(Database):
         """return all orders belonging to a particular user"""
         select_command = "SELECT row_to_json(row) FROM (SELECT * FROM orders WHERE user_id = %s) row;" % (
             user_id)
-        return self.cursor.execute(select_command)
+        self.cursor.execute(select_command)
+        return self.cursor.fetchall()

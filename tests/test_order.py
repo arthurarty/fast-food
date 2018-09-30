@@ -25,6 +25,11 @@ def test_get_orders_by_admin(client):
         '/v1/orders', headers={'Authorization': 'Bearer ' + signin(client)})
     assert resp.status_code == 200
 
+def test_get_users_history(client):
+    resp = client.get(
+        '/v1/users/orders', headers={'Authorization': 'Bearer ' + signin(client)})
+    assert resp.status_code == 200
+
 def test_get_orders_by_user(client):
     resp = client.get(
         '/v1/orders', headers={'Authorization': 'Bearer ' + user_two(client)})

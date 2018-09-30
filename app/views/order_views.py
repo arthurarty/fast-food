@@ -26,6 +26,12 @@ def post_order():
     else:
         return jsonify({"msg": "Menu_id and Quantity must be integers > 0. Example: 2"}), 400
 
+@app.route('/v1/users/orders', methods=['GET'])
+@jwt_required
+def get_user_history():
+    """method returns users history"""
+    current_user = get_jwt_identity()
+    return jsonify(orders.get_orders_by_userid(current_user['user_id'])), 200
 
 @app.route('/v1/orders', methods=['GET'])
 @jwt_required

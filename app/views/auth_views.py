@@ -7,7 +7,7 @@ from flask_jwt_extended import (JWTManager, create_access_token,
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import app
-from app.utilities import test_str_input, test_int_input
+from app.utilities import *
 from app.views import db_conn
 
 
@@ -57,11 +57,7 @@ def login():
     
     email = test_str_input(request.json.get('email'))
     password = test_str_input(str(request.json.get('password')))
-
-    if not email:
-        return jsonify({"msg": "email field is empty"}), 400
-    if not password:
-        return jsonify({"msg": "password field is empty"}), 400
+    check_for_email_password(email, password)
 
     output = ""
     items = db_conn.query_single(email)
@@ -70,13 +66,5 @@ def login():
 
     if email in output:
         if check_password_hash(hashed_password[0], password):
-            user_id = db_conn.return_id(email)
-            user_role = db_conn.return_role(email)
-            user_details = {"user_id" : " ", "user_role" : " "}
-            user_details['user_id'] = user_id[0]
-            user_details['user_role'] = user_role[0]
-            access_token = create_access_token(identity=user_details)
-            output = {'message': 'Successful login'}
-            access_token_output = {'access_token': "%s" % (access_token)}
-            return jsonify(output, access_token_output), 200
+            return create_jwt_token(db_conn, email, create_access_token)
     return jsonify({"msg":"Bad username or password"}), 400

@@ -3,6 +3,7 @@ from app import create_app
 from app.models import Database
 
 app = create_app()
+app.config.from_object('config.DevelopmentConfig')
 db_conn = Database(app.config['DATABASE_URL'])
 
 @app.errorhandler(400)

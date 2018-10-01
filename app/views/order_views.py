@@ -1,4 +1,4 @@
-from app.views import app
+from app import app
 from app.utilities import test_str_input, test_int_input
 from app.models.order import Order
 from app.views import db_conn

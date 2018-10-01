@@ -18,7 +18,7 @@ def test_user_creation(client, database):
     assert resp.status_code == 201
 
 
-def test_duplicate_user_creation(client):
+def test_duplicate_user_creation(client, database):
     resp = post_json(client, '/v1/auth/signup', {
         "email": "test@test.com",
         "name": "test",
@@ -28,16 +28,20 @@ def test_duplicate_user_creation(client):
     assert resp.status_code == 400
 
 
-def test_user_login(client):
-    resp = post_json(client, '/v1/auth/login', {
+def test_user_login(client, database):
+    resp = post_json(client, '/v1/auth/signup', {
         "email": "test@test.com",
+        "name": "test",
         "password": "testAs1v",
         "role": "True"})
+    resp = post_json(client, '/v1/auth/login', {
+        "email": "test@test.com",
+        "password": "testAs1v"})
     assert b'Successful login' in resp.data
     assert resp.status_code == 200
 
 
-def test_long_name(client):
+def test_long_name(client, database):
     resp = post_json(client, '/v1/auth/signup', {
         "email": "test@test.com",
         "name": "testismeyoutoova",
@@ -47,7 +51,7 @@ def test_long_name(client):
     assert resp.status_code == 400
 
 
-def test_invalid_name(client):
+def test_invalid_name(client, database):
     resp = post_json(client, '/v1/auth/signup', {
         "email": "test@test.com",
         "name": "testAsBA",
@@ -57,7 +61,7 @@ def test_invalid_name(client):
     assert resp.status_code == 400
 
 
-def test_short_password(client):
+def test_short_password(client, database):
     resp = post_json(client, '/v1/auth/signup', {
         "email": "test@test.com",
         "name": "test",
@@ -67,7 +71,7 @@ def test_short_password(client):
     assert resp.status_code == 400
 
 
-def test_long_password(client):
+def test_long_password(client, database):
     resp = post_json(client, '/v1/auth/signup', {
         "email": "test@test.com",
         "name": "test",
@@ -77,7 +81,7 @@ def test_long_password(client):
     assert resp.status_code == 400
 
 
-def test_invalid_email(client):
+def test_invalid_email(client, database):
     resp = post_json(client, '/v1/auth/signup', {
         "email": "testtest",
         "name": "test",

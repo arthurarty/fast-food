@@ -3,7 +3,7 @@ from app.models import Database
 import psycopg2
 import json
 from flask import jsonify
-from app.views import app
+from app import app
 
 class Menu(Database):
     def __init__(self):

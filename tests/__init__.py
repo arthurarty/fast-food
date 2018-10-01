@@ -5,7 +5,7 @@ from app.views import app
 from app.models import Database
 import json
 import os
-
+from config import TestingConfig, DevelopmentConfig
 
 @pytest.fixture
 def client():
@@ -15,8 +15,12 @@ def client():
 
 @pytest.fixture(scope='session')
 def database():
-    app.config.from_object('config.DevelopmentConfig')
+    app.config.from_object(DevelopmentConfig)
     db_conn = Database(app.config['DATABASE_URL'])
+    #check if tables exist
+    if not db_conn.check_tables():
+        db_conn.create_all_tables()
+    #raise Exception(db_conn)
     yield db_conn
     db_conn.drop_all_tables()
 

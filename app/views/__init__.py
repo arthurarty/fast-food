@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request
-from app import create_app
+from app import app
 from app.models import Database
+from config import DevelopmentConfig
 
-app = create_app()
-app.config.from_object('config.DevelopmentConfig')
+app.config.from_object(DevelopmentConfig)
 db_conn = Database(app.config['DATABASE_URL'])
 
 @app.errorhandler(400)

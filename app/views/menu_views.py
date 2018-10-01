@@ -18,7 +18,7 @@ def post_menu():
     food_name = test_str_input(request.json.get('food_name'))
     desc = test_str_input(request.json.get('desc'))
     price = test_int_input(request.json.get('price'))
-
+    
     if not request.json.get('food_name'):
         return jsonify({"msg": "Food_name is missing"}), 400
     if not request.json.get('desc'):
@@ -41,7 +41,6 @@ def post_menu():
     else:
         output = ({"msg": "Name must be a string. Example: Matooke"})
         return jsonify(output), 400
-
 
 @app.route('/v1/menu', methods=['GET'])
 @jwt_required

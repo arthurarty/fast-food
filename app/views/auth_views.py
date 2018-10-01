@@ -19,7 +19,7 @@ def add_user():
         return jsonify({"msg": "Email field is empty."}), 400
 
     name = test_str_input(request.json.get('name'))
-    
+
     if not name:
         return jsonify({"msg": "Name field is empty"}), 400
     password = str(request.json.get('password')).strip()
@@ -82,4 +82,4 @@ def login():
             output = {'message': 'Successful login'}
             access_token_output = {'access_token': "%s" % (access_token)}
             return jsonify(output, access_token_output), 200
-    return jsonify({"msg":"Bad username or password"}), 200
+    return jsonify({"msg":"Bad username or password"}), 400

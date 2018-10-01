@@ -29,17 +29,18 @@ def test_duplicate_user_creation(client, database):
 
 
 def test_user_login(client, database):
-    resp = post_json(client, '/v1/auth/signup', {
-        "email": "test@test.com",
-        "name": "test",
-        "password": "testAs1v",
-        "role": "True"})
     resp = post_json(client, '/v1/auth/login', {
         "email": "test@test.com",
         "password": "testAs1v"})
     assert b'Successful login' in resp.data
     assert resp.status_code == 200
 
+def test_user_bad_login(client, database):
+    resp = post_json(client, '/v1/auth/login', {
+        "email": "test@test.com",
+        "password": "tessfsgeat"})
+    assert b'Bad username' in resp.data
+    assert resp.status_code == 400
 
 def test_long_name(client, database):
     resp = post_json(client, '/v1/auth/signup', {

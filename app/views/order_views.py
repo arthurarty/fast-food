@@ -4,7 +4,7 @@ from app.models.order import Order
 from app.models.orders import Orders
 from flask import Flask, jsonify, request
 from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
-orders = Orders()
+orders = Orders(app.config['DATABASE_URL'])
 
 
 @app.route('/v1/users/orders', methods=['POST'])

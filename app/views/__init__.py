@@ -3,7 +3,7 @@ from app import create_app
 from app.models import Database
 
 app = create_app()
-db_conn = Database()
+db_conn = Database(app.config['DATABASE_URL'])
 
 @app.errorhandler(400)
 def bad_request(error):

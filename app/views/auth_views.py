@@ -49,7 +49,7 @@ def add_user():
         if len(password) > 12:
             return jsonify({"msg": "Password too long, max 12"}), 400
 
-        new_user = User(email, name, generate_password_hash(password), role)
+        new_user = User(email, name, generate_password_hash(password), role, app.config['DATABASE_URL'])
         return new_user.insert_new_record()
 
     return jsonify({"msg": "empty field"}), 400

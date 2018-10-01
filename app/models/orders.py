@@ -7,8 +7,8 @@ from flask import jsonify
 class Orders(Database):
     """a restuarant has several orders stored in a list """
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, database_url):
+        super().__init__(database_url)
 
     def add_order(self, order):
         """add a new order """

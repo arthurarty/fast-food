@@ -7,6 +7,7 @@ def create_app():
         JWTManager)
 
     app = Flask(__name__, instance_relative_config=True)
+    app.config.from_object('config')
     app.config['JWT_SECRET_KEY'] = 'qweBas12@!asBASD'
     JWTManager(app)
     return app

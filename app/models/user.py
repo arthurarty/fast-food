@@ -7,8 +7,8 @@ from flask import jsonify
 
 class User(Database):
 
-    def __init__(self, email, name, password, role):
-        super().__init__()
+    def __init__(self, email, name, password, role, database_url):
+        super().__init__(database_url)
         self.email = email
         self.name = name
         self.password = password

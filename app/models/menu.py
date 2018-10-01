@@ -6,8 +6,8 @@ from flask import jsonify
 
 
 class Menu(Database):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, database_url):
+        super().__init__(database_url)
 
     def insert_new_food(self, food):
         """method creates a single table"""

@@ -15,7 +15,7 @@ def client():
 
 @pytest.fixture(scope='session')
 def database():
-    db_conn = Database()
+    db_conn = Database(app.config['DATABASE_URL'])
     yield db_conn
     db_conn.drop_all_tables()
 

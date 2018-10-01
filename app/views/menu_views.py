@@ -4,7 +4,7 @@ from app.models.menu import Menu
 from app.models.food import Food
 from flask import Flask, jsonify, request
 from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
-menu = Menu(app.config['DATABASE_URL'])
+menu = Menu()
 
 
 @app.route('/v1/menu', methods=['POST'])

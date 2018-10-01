@@ -1,11 +1,9 @@
 from app.views import app
 from app.utilities import test_str_input, test_int_input
 from app.models.order import Order
-from app.models.orders import Orders
+from app.views import db_conn
 from flask import Flask, jsonify, request
 from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
-orders = Orders(app.config['DATABASE_URL'])
-
 
 @app.route('/v1/users/orders', methods=['POST'])
 @jwt_required
@@ -23,7 +21,7 @@ def post_order():
 
     if quantity and menu_id:
         new_order = Order( menu_id, current_user['user_id'], quantity)
-        return orders.add_order(new_order)
+        return db_conn.add_order(new_order)
     else:
         return jsonify({"msg": "Menu_id and Quantity must be integers > 0. Example: 2"}), 400
 
@@ -32,7 +30,7 @@ def post_order():
 def get_user_history():
     """method returns users history"""
     current_user = get_jwt_identity()
-    return jsonify(orders.get_orders_by_userid(current_user['user_id'])), 200
+    return jsonify(db_conn.get_orders_by_userid(current_user['user_id'])), 200
 
 @app.route('/v1/orders', methods=['GET'])
 @jwt_required
@@ -41,7 +39,7 @@ def get_orders():
     current_user = get_jwt_identity()
     if not current_user['user_role']:
         return jsonify({'msg':'Not authorized'}), 401
-    res = orders.get_orders()
+    res = db_conn.get_orders()
     return jsonify(res), 200
 
 
@@ -52,7 +50,7 @@ def get_specific_order(order_id):
     current_user = get_jwt_identity()
     if not current_user['user_role']:
         return jsonify({'msg':'Not authorized'}), 401
-    res = orders.get_single_order(order_id)
+    res = db_conn.get_single_order(order_id)
     if not res:
         return jsonify({'msg': 'Order not found'}), 404
 
@@ -71,7 +69,7 @@ def update_status(order_id):
         return jsonify({"msg": "Status input has to be Processing, Cancelled or Complete."}), 400
 
     if status:
-        res = orders.update_order_status(order_id, status)
+        res = db_conn.update_order_status(order_id, status)
         return res
     else:
         return jsonify({"msg": "Status must be a string. Example: complete"}), 400

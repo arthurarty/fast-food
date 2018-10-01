@@ -3,11 +3,11 @@ from app.models import Database
 import psycopg2
 import json
 from flask import jsonify
-
+from app.views import app
 
 class Menu(Database):
-    def __init__(self, database_url):
-        super().__init__(database_url)
+    def __init__(self):
+        super().__init__(app.config['DATABASE_URL'])
 
     def insert_new_food(self, food):
         """method creates a single table"""

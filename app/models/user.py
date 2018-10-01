@@ -3,12 +3,12 @@ from app.models import Database
 import psycopg2
 import json
 from flask import jsonify
-
+from app.views import app
 
 class User(Database):
 
-    def __init__(self, email, name, password, role, database_url):
-        super().__init__(database_url)
+    def __init__(self, email, name, password, role):
+        super().__init__(app.config['DATABASE_URL'])
         self.email = email
         self.name = name
         self.password = password

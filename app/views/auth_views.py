@@ -14,17 +14,12 @@ from app.views import db_conn
 @app.route('/v1/auth/signup', methods=['POST'])
 def add_user():
     """add user adds a user having validated the inputs."""
-    if not isinstance(request.json.get('email'), str):
-        return jsonify({"msg": "Email must be a string. Example: john@exam.com"}), 400
-
-    email = request.json.get('email').strip()
+    email = test_str_input(request.json.get('email'))
     if not email:
         return jsonify({"msg": "Email field is empty."}), 400
 
-    if not isinstance(request.json.get('name'), str):
-        return jsonify({"msg": "Name must be a string. Example: johndoe"}), 400
-
-    name = request.json.get('name').strip()
+    name = test_str_input(request.json.get('name'))
+    
     if not name:
         return jsonify({"msg": "Name field is empty"}), 400
     password = str(request.json.get('password')).strip()

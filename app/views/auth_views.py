@@ -54,12 +54,9 @@ def add_user():
 def login():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}), 400
-
-    if not isinstance(request.json.get('email'), str):
-        return jsonify({"msg": "Email must be a string. Example: john@exam.com"}), 400
-
-    email = request.json.get('email').strip()
-    password = str(request.json.get('password')).strip()
+    
+    email = test_str_input(request.json.get('email'))
+    password = test_str_input(str(request.json.get('password')))
 
     if not email:
         return jsonify({"msg": "email field is empty"}), 400

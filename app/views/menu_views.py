@@ -2,6 +2,7 @@ from app import app
 from app.utilities import test_str_input, test_int_input
 from app.models.menu import Menu
 from app.models.food import Food
+from flasgger import swag_from
 from flask import Flask, jsonify, request
 from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
 menu = Menu()
@@ -45,6 +46,7 @@ def post_menu():
 
 @app.route('/v1/menu', methods=['GET'])
 @jwt_required
+@swag_from('../docs/get_menu.yml')
 def get_menu():
     """method return menu"""
     res = menu.get_menu()

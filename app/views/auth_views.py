@@ -1,12 +1,13 @@
 from flask import Flask, jsonify, request
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from flasgger import swag_from
 from app import app
 from app.utilities import test_str_input, create_jwt_token, check_for_email_password, signup_user
 from app.views import db_conn
 
 
 @app.route('/v1/auth/signup', methods=['POST'])
+@swag_from('../docs/signup.yml')
 def add_user():
     """add user adds a user having validated the inputs."""
     email = test_str_input(request.json.get('email'))
@@ -30,6 +31,7 @@ def add_user():
 
 
 @app.route('/v1/auth/login', methods=['POST'])
+@swag_from('../docs/signin.yml')
 def login():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}), 400

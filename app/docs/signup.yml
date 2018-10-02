@@ -1,0 +1,30 @@
+Authentication docs
+---
+tags:
+ - User Authentication
+parameters:
+  - in: body
+    name: body
+    required: true
+    type: string
+    description: This route is used to register a new user. 
+responses:
+  201:
+    description: User account successfully created.
+    schema:
+      id: register
+      properties:
+        email:
+          type: string
+          default: john.doe@example.com
+        name:
+          type: string 
+          default: john doe
+        password:
+          type: string
+          default: pas1231sf
+        role:
+          type: string
+          default: false
+  400:
+    description: One of the three fields required is empty.

@@ -11,6 +11,18 @@ parameters:
 responses:
   201:
     description: Food has been added.
+    schema:
+      id: Menu
+      properties:
+        food_name:
+          type: string
+          default: Chicken
+        desc:
+          type: string
+          default: Well grilled chicken served with mashed potato.
+        price:
+          type: string
+          default: 15000
   400:
     description: Food item is not complete.
 security:

@@ -1,0 +1,32 @@
+Update Order Status.
+---
+tags:
+    - Order
+parameters:
+    - in: path
+      name: order_id
+      required: true
+      type: integer
+      description: input id of order.
+    - in: body
+      name: body
+      required: true
+      type: string
+      description: Enter the new status. 
+responses:
+  200:
+    description: Get update order status.
+    schema:
+      id: status
+      properties:
+        status:
+          type: string
+          default: Complete or Cancelled
+security:
+  - JWT:
+      description: Pass in jwt token. i.e Bearer <jwt>
+      type: apiKey
+      scheme: bearer
+      name: Authorization
+      in: header
+      bearerFormat: JWT

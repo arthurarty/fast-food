@@ -10,9 +10,18 @@ parameters:
     description: This route is used to add an item to the menu. 
 responses:
   201:
-    description: Food has been added.
+    description: Order has been added.
+    schema:
+      id: Order
+      properties:
+        menu_id:
+          type: int
+          default: 1
+        quantity:
+          type: int
+          default: 13
   400:
-    description: Food item is not complete.
+    description: Bad request. Order is incomplete.
 security:
   - JWT:
       description: Pass in jwt token. i.e Bearer <jwt>

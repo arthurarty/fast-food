@@ -1,12 +1,14 @@
 from app import app
 from app.utilities import test_str_input, test_int_input
 from app.models.order import Order
+from flasgger import swag_from
 from app.views import db_conn
 from flask import Flask, jsonify, request
 from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
 
 @app.route('/v1/users/orders', methods=['POST'])
 @jwt_required
+@swag_from('../docs/post_order.yml')
 def post_order():
     """method to add order"""
     current_user = get_jwt_identity()
@@ -27,6 +29,7 @@ def post_order():
 
 @app.route('/v1/users/orders', methods=['GET'])
 @jwt_required
+@swag_from('../docs/get_history.yml')
 def get_user_history():
     """method returns users history"""
     current_user = get_jwt_identity()
@@ -34,6 +37,7 @@ def get_user_history():
 
 @app.route('/v1/orders', methods=['GET'])
 @jwt_required
+@swag_from('../docs/get_order.yml')
 def get_orders():
     """method returns all orders"""
     current_user = get_jwt_identity()
@@ -45,6 +49,7 @@ def get_orders():
 
 @app.route('/v1/orders/<int:order_id>/', methods=['GET'])
 @jwt_required
+@swag_from('../docs/get_single_order.yml')
 def get_specific_order(order_id):
     """method returns specific order"""
     current_user = get_jwt_identity()
@@ -59,6 +64,7 @@ def get_specific_order(order_id):
 
 @app.route('/v1/orders/<int:order_id>/', methods=['PUT'])
 @jwt_required
+@swag_from('../docs/update_order.yml')
 def update_status(order_id):
     """method updates the status of an order"""
     current_user = get_jwt_identity()

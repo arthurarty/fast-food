@@ -1,0 +1,15 @@
+Get User Order History
+---
+tags:
+    - Order
+responses:
+  200:
+    description: Get users' order history.
+security:
+  - JWT:
+      description: Pass in jwt token. i.e Bearer <jwt>
+      type: apiKey
+      scheme: bearer
+      name: Authorization
+      in: header
+      bearerFormat: JWT

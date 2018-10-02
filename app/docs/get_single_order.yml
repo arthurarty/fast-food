@@ -1,0 +1,21 @@
+Get Specific Order
+---
+tags:
+    - Order
+parameters:
+    - in: path
+      name: order_id
+      required: true
+      type: integer
+      description: input id of order.
+responses:
+  200:
+    description: Get a specific order.
+security:
+  - JWT:
+      description: Pass in jwt token. i.e Bearer <jwt>
+      type: apiKey
+      scheme: bearer
+      name: Authorization
+      in: header
+      bearerFormat: JWT

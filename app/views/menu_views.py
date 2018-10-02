@@ -1,7 +1,8 @@
-from app.views import app
+from app import app
 from app.utilities import test_str_input, test_int_input
 from app.models.menu import Menu
 from app.models.food import Food
+from flasgger import swag_from
 from flask import Flask, jsonify, request
 from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
 menu = Menu()
@@ -9,6 +10,7 @@ menu = Menu()
 
 @app.route('/v1/menu', methods=['POST'])
 @jwt_required
+@swag_from('../docs/post_menu.yml')
 def post_menu():
     """method to add order"""
     current_user = get_jwt_identity()
@@ -18,7 +20,8 @@ def post_menu():
     food_name = test_str_input(request.json.get('food_name'))
     desc = test_str_input(request.json.get('desc'))
     price = test_int_input(request.json.get('price'))
-
+    
+    
     if not request.json.get('food_name'):
         return jsonify({"msg": "Food_name is missing"}), 400
     if not request.json.get('desc'):
@@ -42,9 +45,9 @@ def post_menu():
         output = ({"msg": "Name must be a string. Example: Matooke"})
         return jsonify(output), 400
 
-
 @app.route('/v1/menu', methods=['GET'])
 @jwt_required
+@swag_from('../docs/get_menu.yml')
 def get_menu():
     """method return menu"""
     res = menu.get_menu()

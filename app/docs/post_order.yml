@@ -1,0 +1,32 @@
+Post Order
+---
+tags:
+    - Order
+parameters:
+  - in: body
+    name: body
+    required: true
+    type: string
+    description: This route is used to add an item to the menu. 
+responses:
+  201:
+    description: Order has been added.
+    schema:
+      id: Order
+      properties:
+        menu_id:
+          type: int
+          default: 1
+        quantity:
+          type: int
+          default: 13
+  400:
+    description: Bad request. Order is incomplete.
+security:
+  - JWT:
+      description: Pass in jwt token. i.e Bearer <jwt>
+      type: apiKey
+      scheme: bearer
+      name: Authorization
+      in: header
+      bearerFormat: JWT

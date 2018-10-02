@@ -66,13 +66,10 @@ def signup_user(email, name, password, role):
     if not re.match(r'^[a-zA-Z0-9_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email):
         output = "Invalid email. Example: john@exam.com"
 
-    if len(name) > 15:
-        output = "Name is too long, max 15"
+    if not re.match(r'^[a-z0-9_]+$', name) or len(name) > 15:
+        output = "Name can only contain lowercase a-z, 0-9, _ and Max len of 15"
 
-    if not re.match(r'^[a-z0-9_]+$', name):
-        output = "Name can only contain lowercase a-z, 0-9 and _"
-
-    if len(password) < 8 and len(password) > 12:
+    if len(password) < 8 or len(password) > 12:
         output = "Password should be 8 chars at least and 12 at most"
 
     if len(output) > 2:

@@ -48,7 +48,7 @@ def test_long_name(client, database):
         "name": "testismeyoutoova",
         "password": "testsfas",
         "role": "True"})
-    assert b'Name is too long' in resp.data
+    assert b'Max len of 15' in resp.data
     assert resp.status_code == 400
 
 
@@ -58,17 +58,17 @@ def test_invalid_name(client, database):
         "name": "testAsBA",
         "password": "testsfas",
         "role": "True"})
-    assert b'Name can only contain lowercase a-z, 0-9 and _' in resp.data
+    assert b'Name can only contain lowercase a-z, 0-9' in resp.data
     assert resp.status_code == 400
 
 
 def test_short_password(client, database):
     resp = post_json(client, '/v1/auth/signup', {
-        "email": "test@test.com",
+        "email": "jks@test.com",
         "name": "test",
         "password": "test",
         "role": "True"})
-    assert b'Password too short' in resp.data
+    assert b'Password should be 8 chars at least' in resp.data
     assert resp.status_code == 400
 
 
@@ -78,7 +78,7 @@ def test_long_password(client, database):
         "name": "test",
         "password": "testsfsfdsfsdf",
         "role": "True"})
-    assert b'Password too long' in resp.data
+    assert b'12 at most' in resp.data
     assert resp.status_code == 400
 
 

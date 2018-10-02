@@ -86,7 +86,7 @@ def test_invalid_email(client, database):
     resp = post_json(client, '/v1/auth/signup', {
         "email": "testtest",
         "name": "test",
-        "password": "testsfsfdsfsdf",
+        "password": "testsftd",
         "role": "True"})
     assert b'Invalid email' in resp.data
     assert resp.status_code == 400

@@ -50,20 +50,23 @@ def create_jwt_token(db_conn, email):
     return jsonify(output, access_token_output), 200
 
 def signup_user(email, name, password, role):
+    output = ""
     if not re.match(r'^[a-zA-Z0-9_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email):
-        return jsonify({"msg": "Invalid email. Example: john@exam.com"}), 400
+        output = "Invalid email. Example: john@exam.com"
 
     if len(name) > 15:
-        return jsonify({"msg": "Name is too long, max 15"}), 400
+        output = "Name is too long, max 15"
 
     if not re.match(r'^[a-z0-9_]+$', name):
-        return jsonify({"msg": "Name can only contain lowercase a-z, 0-9 and _"}), 400
+        output =  "Name can only contain lowercase a-z, 0-9 and _"
 
     if len(password) < 8:
-        return jsonify({"msg": "Password too short, min 8 chars"}), 400
+        output = "Password too short, min 8 chars"
 
     if len(password) > 12:
-        return jsonify({"msg": "Password too long, max 12"}), 400
+        output = "Password too long, max 12"
+    if len(output) >2 :
+        return jsonify({"msg":output}), 400
 
     new_user = User(email, name, generate_password_hash(password), role)
     return new_user.insert_new_record()

@@ -1,5 +1,5 @@
 from app import app
-from app.utilities import test_str_input, test_int_input
+from app.utilities import test_str_input, test_int_input, check_for_quantity_and_menuid
 from app.models.order import Order
 from flasgger import swag_from
 from app.views import db_conn
@@ -14,17 +14,13 @@ def post_order():
     current_user = get_jwt_identity()
     menu_id = test_int_input(request.json.get('menu_id'))
     quantity = test_int_input(request.json.get('quantity'))
-
-    if not request.json.get('quantity'):
-        return jsonify({"msg": "Quantity is missing"}), 400
-    
-    if not request.json.get('menu_id'):
-        return jsonify({"msg":"Menu_id is missing"}), 400
-
+    output = check_for_quantity_and_menuid(request.json.get('quantity'), request.json.get('menu_id'))
     if quantity and menu_id:
         new_order = Order( menu_id, current_user['user_id'], quantity)
         return db_conn.add_order(new_order)
     else:
+        if len(output) > 2:
+            return jsonify({"msg":output}), 400
         return jsonify({"msg": "Menu_id and Quantity must be integers > 0. Example: 2"}), 400
 
 @app.route('/v1/users/orders', methods=['GET'])

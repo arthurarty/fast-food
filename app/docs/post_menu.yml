@@ -1,0 +1,23 @@
+Post Menu Item
+---
+tags:
+    - Menu
+parameters:
+  - in: body
+    name: body
+    required: true
+    type: string
+    description: This route is used to add an item to the menu. 
+responses:
+  201:
+    description: Food has been added.
+  400:
+    description: Food item is not complete.
+security:
+  - JWT:
+      description: Pass in jwt token. i.e Bearer <jwt>
+      type: apiKey
+      scheme: bearer
+      name: Authorization
+      in: header
+      bearerFormat: JWT

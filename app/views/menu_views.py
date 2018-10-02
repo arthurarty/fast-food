@@ -10,6 +10,7 @@ menu = Menu()
 
 @app.route('/v1/menu', methods=['POST'])
 @jwt_required
+@swag_from('../docs/post_menu.yml')
 def post_menu():
     """method to add order"""
     current_user = get_jwt_identity()

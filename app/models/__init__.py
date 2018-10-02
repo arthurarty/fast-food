@@ -47,7 +47,7 @@ class Database:
         self.create_table('orders', "order_id SERIAL PRIMARY KEY, menu_id INT NOT NULL " +
                           "REFERENCES menu(menu_id), user_id INT NOT NULL " +
                           "REFERENCES users(user_id), quantity INT NOT NULL, " +
-                          "status text, created_at Date NOT NULL, updated_at Date")
+                          "status text, created_at Date NOT NULL")
 
     def drop_all_tables(self):
         self.drop_table('orders')

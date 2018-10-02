@@ -19,6 +19,7 @@ def post_menu():
     desc = test_str_input(request.json.get('desc'))
     price = test_int_input(request.json.get('price'))
     
+    
     if not request.json.get('food_name'):
         return jsonify({"msg": "Food_name is missing"}), 400
     if not request.json.get('desc'):

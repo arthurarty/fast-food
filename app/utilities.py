@@ -72,11 +72,9 @@ def signup_user(email, name, password, role):
     if not re.match(r'^[a-z0-9_]+$', name):
         output = "Name can only contain lowercase a-z, 0-9 and _"
 
-    if len(password) < 8:
-        output = "Password too short, min 8 chars"
+    if len(password) < 8 and len(password) > 12:
+        output = "Password should be 8 chars at least and 12 at most"
 
-    if len(password) > 12:
-        output = "Password too long, max 12"
     if len(output) > 2:
         return jsonify({"msg": output}), 400
 

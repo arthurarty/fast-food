@@ -11,6 +11,7 @@ def test_zero_menu_id(client):
     assert b'Menu_id is missing' in resp.data
     assert resp.status_code == 400
 
+
 def test_str_menu_id(client):
     """post data without value customer name"""
     resp = post_json_header(client, '/v1/users/orders', {
@@ -20,6 +21,7 @@ def test_str_menu_id(client):
     assert b'Menu_id and Quantity must be integers > 0. Example: 2' in resp.data
     assert resp.status_code == 400
 
+
 def test_zero_quantity(client):
     """post data without value customer name"""
     resp = post_json_header(client, '/v1/users/orders', {
@@ -28,6 +30,7 @@ def test_zero_quantity(client):
         headers={'Authorization': 'Bearer ' + signin(client)})
     assert b'Quantity is missing' in resp.data
     assert resp.status_code == 400
+
 
 def test_str_quantity(client):
     """post data without value customer name"""
@@ -46,3 +49,13 @@ def test_update_empty_status(client):
     assert b'Status input has to be Processing, Cancelled or Complete' in resp.data
     assert resp.status_code == 400
 
+
+def test_redirect(client):
+    resp = client.get('/', follow_redirects=True)
+    assert resp.status_code == 200
+
+
+def test_route_not_found(client):
+    resp = client.get('/fods')
+    assert resp.status_code == 404
+    assert b'Route does not exist' in resp.data

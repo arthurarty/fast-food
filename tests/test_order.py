@@ -34,7 +34,7 @@ def test_get_users_history(client):
 def test_get_orders_by_user(client):
     resp = client.get(
         '/v1/orders', headers={'Authorization': 'Bearer ' + user_two(client)})
-    assert resp.status_code == 401
+    assert resp.status_code == 403
     assert b'Not authorized' in resp.data
     
 def test_get_single_order(client):
@@ -48,7 +48,7 @@ def test_get_single_order_by_user(client):
     """test to ensure users cant view specific order"""
     resp = client.get(
         '/v1/orders/1/', headers={'Authorization': 'Bearer ' + user_two(client)})
-    assert resp.status_code == 401
+    assert resp.status_code == 403
     assert b'Not authorized' in resp.data
 
 def test_get_wrong_order(client):
@@ -69,7 +69,7 @@ def test_update_order_by_user(client):
     resp = put_json(client, '/v1/orders/1/', {
         "status": "Complete", },
         headers={'Authorization': 'Bearer ' + user_two(client)})
-    assert resp.status_code == 401
+    assert resp.status_code == 403
     assert b'Not authorized' in resp.data
 
 def test_update_non_existing_order(client):

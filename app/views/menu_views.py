@@ -15,7 +15,7 @@ def post_menu():
     """method to add order"""
     current_user = get_jwt_identity()
     if not current_user['user_role']:
-        return jsonify({'msg':'Not authorized'}), 401
+        return jsonify({'msg':'Not authorized'}), 403
 
     food_name = test_str_input(request.json.get('food_name'))
     desc = test_str_input(request.json.get('desc'))

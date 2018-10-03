@@ -38,7 +38,7 @@ def get_orders():
     """method returns all orders"""
     current_user = get_jwt_identity()
     if not current_user['user_role']:
-        return jsonify({'msg':'Not authorized'}), 401
+        return jsonify({'msg':'Not authorized'}), 403
     res = db_conn.get_orders()
     return jsonify(res), 200
 
@@ -50,7 +50,7 @@ def get_specific_order(order_id):
     """method returns specific order"""
     current_user = get_jwt_identity()
     if not current_user['user_role']:
-        return jsonify({'msg':'Not authorized'}), 401
+        return jsonify({'msg':'Not authorized'}), 403
     res = db_conn.get_single_order(order_id)
     if not res:
         return jsonify({'msg': 'Order not found'}), 404
@@ -65,7 +65,7 @@ def update_status(order_id):
     """method updates the status of an order"""
     current_user = get_jwt_identity()
     if not current_user['user_role']:
-        return jsonify({'msg':'Not authorized'}), 401
+        return jsonify({'msg':'Not authorized'}), 403
     status = request.json.get('status')
     if status  not in ['Processing', 'Cancelled', 'Complete']:
         return jsonify({"msg": "Status input has to be Processing, Cancelled or Complete."}), 400

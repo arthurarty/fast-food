@@ -37,6 +37,17 @@ def check_for_quantity_and_menuid(quantity, menu_id):
         output = "Menu_id is missing"
     return output
 
+def check_menu_creation(food_name, desc, price):
+    """method ensures the three are passed"""
+    output = ""
+    if not food_name:
+        output = "Food_name is missing"
+    if not desc:
+        output = "Desc is missing"
+    if not price:
+        output = "Price is missing"
+    if len(output) > 2:
+        return output
 
 def check_for_email_password(email, password):
     """method ensures email and password exist"""

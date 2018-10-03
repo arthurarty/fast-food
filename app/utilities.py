@@ -1,43 +1,42 @@
-from flask import Flask, jsonify
-from flask_jwt_extended import (create_access_token,
-                                get_jwt_identity, jwt_required)
-from werkzeug.security import check_password_hash, generate_password_hash
-from app.models.user import User
+"""
+Utilites used through out the application
+"""
 import re
+
+from flask import jsonify
+from flask_jwt_extended import create_access_token
+from werkzeug.security import generate_password_hash
+
+from app.models.user import User
 
 
 def test_str_input(text):
-    """test input to be string"""
+    """test input to be string and not empty"""
     if isinstance(text, str):
-        """check if string is empty using strip function"""
         new_text = str(text).strip()
         if not new_text:
-            """if string empty return false"""
             return False
         return new_text
-    else:
-        return False
+    return False
 
 
 def test_int_input(number):
-    """test input to be int"""
+    """test input to be int > 0"""
     if isinstance(number, int):
-        """check if int is greater than 0"""
         if number > 0:
             return number
-        else:
-            return False
-    else:
-        return False
+    return False
 
 
 def check_for_quantity_and_menuid(quantity, menu_id):
+    """check if quantity and menuid have been posted"""
     output = ""
     if not quantity:
         output = "Quantity is missing"
     if not menu_id:
         output = "Menu_id is missing"
     return output
+
 
 def check_for_email_password(email, password):
     """method ensures email and password exist"""
@@ -62,6 +61,7 @@ def create_jwt_token(db_conn, email):
 
 
 def signup_user(email, name, password, role):
+    """sign up a user given the email, name, password and role"""
     output = ""
     if not re.match(r'^[a-zA-Z0-9-_.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.]+$', email):
         output = "Invalid email. Example: john@exam.com"

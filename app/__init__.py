@@ -1,8 +1,7 @@
 """
 Create instance of Flask application.
 """
-import json
-from flask import Flask, request, jsonify
+from flask import Flask
 from flasgger import Swagger
 from flask_jwt_extended import JWTManager
 from config import DevelopmentConfig

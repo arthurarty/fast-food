@@ -63,7 +63,7 @@ def create_jwt_token(db_conn, email):
 
 def signup_user(email, name, password, role):
     output = ""
-    if not re.match(r'^[a-zA-Z0-9_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email):
+    if not re.match(r'^[a-zA-Z0-9-_.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.]+$', email):
         output = "Invalid email. Example: john@exam.com"
 
     if not re.match(r'^[a-z0-9_]+$', name) or len(name) > 15:

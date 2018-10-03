@@ -1,6 +1,4 @@
 """File contains user class"""
-import json
-
 import psycopg2
 from flask import jsonify
 

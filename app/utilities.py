@@ -37,6 +37,7 @@ def check_for_quantity_and_menuid(quantity, menu_id):
         output = "Menu_id is missing"
     return output
 
+
 def check_menu_creation(food_name, desc, price):
     """method ensures the three are passed"""
     output = ""
@@ -48,6 +49,7 @@ def check_menu_creation(food_name, desc, price):
         output = "Price is missing"
     if len(output) > 2:
         return output
+
 
 def check_for_email_password(email, password):
     """method ensures email and password exist"""
@@ -77,8 +79,8 @@ def signup_user(email, name, password, role):
     if not re.match(r'^[a-zA-Z0-9-_.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.]+$', email):
         output = "Invalid email. Example: john@exam.com"
 
-    if not re.match(r'^[a-z0-9_]+$', name) or len(name) > 15:
-        output = "Name can only contain lowercase a-z, 0-9, _ and Max len of 15"
+    if not re.match(r'^[a-z0-9]+$', name) or len(name) > 15:
+        output = "Name can only contain lowercase a-z, 0-9 and Max 15"
 
     if len(password) < 8 or len(password) > 12:
         output = "Password should be 8 chars at least and 12 at most"

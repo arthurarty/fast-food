@@ -48,7 +48,7 @@ def test_long_name(client, database):
         "name": "testismeyoutoova",
         "password": "testsfas",
         "role": "True"})
-    assert b'Max len of 15' in resp.data
+    assert b'Max 15' in resp.data
     assert resp.status_code == 400
 
 

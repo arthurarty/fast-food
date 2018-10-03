@@ -1,9 +1,6 @@
 from flask import Flask, jsonify, request, redirect
 from app import app
 from app.models import Database
-from config import DevelopmentConfig
-
-app.config.from_object(DevelopmentConfig)
 db_conn = Database(app.config['DATABASE_URL'])
 
 @app.route("/")

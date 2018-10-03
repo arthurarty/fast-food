@@ -11,8 +11,8 @@ class Database:
     def __init__(self, database_url):
         try:
             result = urlparse(database_url)
-            username = 'postgres'
-            password = 'asP2#fMe'
+            username = result.username
+            password = result.password
             database = result.path[1:]
             hostname = result.hostname
             portno = 5432

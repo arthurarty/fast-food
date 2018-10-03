@@ -1,11 +1,19 @@
-"""the User class reupresents a user of the system."""
-from app.models import Database
-import psycopg2
+"""File contains user class"""
 import json
+
+import psycopg2
 from flask import jsonify
+
 from app import app
+from app.models import Database
+
 
 class User(Database):
+    """
+    Class user represents a user of a system
+    it includes methods that add a user to the
+    datbase
+    """
 
     def __init__(self, email, name, password, role):
         super().__init__(app.config['DATABASE_URL'])

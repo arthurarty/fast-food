@@ -1,10 +1,13 @@
-from app import app
-from app.utilities import test_str_input, test_int_input
-from app.models.menu import Menu
-from app.models.food import Food
+"""File contains menu views"""
 from flasgger import swag_from
-from flask import Flask, jsonify, request
-from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
+from flask import jsonify, request
+from flask_jwt_extended import get_jwt_identity, jwt_required
+
+from app import app
+from app.models.food import Food
+from app.models.menu import Menu
+from app.utilities import check_menu_creation, test_int_input, test_str_input
+
 menu = Menu()
 
 
@@ -15,19 +18,15 @@ def post_menu():
     """method to add order"""
     current_user = get_jwt_identity()
     if not current_user['user_role']:
-        return jsonify({'msg':'Not authorized'}), 401
+        return jsonify({'msg': 'Not authorized'}), 403
 
+    output = check_menu_creation(request.json.get(
+        'food_name'), request.json.get('desc'), request.json.get('price'))
+    if output:
+        return jsonify({"msg": output}), 400
     food_name = test_str_input(request.json.get('food_name'))
     desc = test_str_input(request.json.get('desc'))
     price = test_int_input(request.json.get('price'))
-    
-    
-    if not request.json.get('food_name'):
-        return jsonify({"msg": "Food_name is missing"}), 400
-    if not request.json.get('desc'):
-        return jsonify({"msg": "Desc is missing"}), 400
-    if not request.json.get('price'):
-        return jsonify({"msg": "Price is missing"}), 400
 
     if food_name:
         if desc:
@@ -45,10 +44,11 @@ def post_menu():
         output = ({"msg": "Name must be a string. Example: Matooke"})
         return jsonify(output), 400
 
+
 @app.route('/v1/menu', methods=['GET'])
 @jwt_required
 @swag_from('../docs/get_menu.yml')
 def get_menu():
-    """method return menu"""
+    """method returns menu"""
     res = menu.get_menu()
     return jsonify(res), 200

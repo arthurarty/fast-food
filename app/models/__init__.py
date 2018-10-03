@@ -3,15 +3,21 @@ from pprint import pprint
 from urllib.parse import urlparse
 from flask import jsonify
 import psycopg2
-import os
 
+row_json = "SELECT row_to_json(row) FROM"
+select_all = "SELECT * FROM"
 
 class Database:
+    """
+    Super class Database connects to the db and has helper functions
+    for the rest of the application.
+    """
+
     def __init__(self, database_url):
         try:
             result = urlparse(database_url)
-            username = 'postgres'
-            password = 'asP2#fMe'
+            username = result.username
+            password = result.password
             database = result.path[1:]
             hostname = result.hostname
             portno = 5432
@@ -57,7 +63,7 @@ class Database:
     def check_table(self, table_name):
         """check if a table exists in the database"""
         self.cursor.execute(
-            "select exists(select * from information_schema.tables where table_name='%s')" % (table_name))
+            "select exists(%s information_schema.tables where table_name='%s')" % (select_all, table_name))
         return self.cursor.fetchone()[0]
 
     def check_tables(self):
@@ -68,21 +74,21 @@ class Database:
 
     def query_single(self, email):
         """returns a user given the user's email"""
-        self.cursor.execute("SELECT * FROM users WHERE email = '%s'" % (email))
+        self.cursor.execute(select_all +" users WHERE email = '%s'" % (email))
         item = self.cursor.fetchone()
         return item
 
     def query_entire_table(self, table_name):
         """returns all records in table"""
-        self.cursor.execute("SELECT row_to_json(row) FROM (SELECT * FROM %s) row" %
-                            (table_name))
+        self.cursor.execute("%s (SELECT * FROM %s) row" %
+                            (select_all, table_name))
         items = self.cursor.fetchall()
         return items
 
     def query_single_row(self, table_name, table_column, row_id):
         """returns a single row from table_name where table_column = row_id"""
-        self.cursor.execute("SELECT row_to_json(row) FROM (SELECT * FROM %s WHERE %s = '%s') row" %
-                            (table_name, table_column, row_id))
+        self.cursor.execute(row_json + "(%s %s WHERE %s = '%s') row" %
+                            (select_all, table_name, table_column, row_id))
         item = self.cursor.fetchone()
         return item
 
@@ -114,7 +120,8 @@ class Database:
         try:
             self.cursor.execute(insert_command)
             self.cursor.execute(
-                "SELECT row_to_json(row) FROM (SELECT * FROM orders WHERE user_id = %s AND created_at = '%s') row;" % (order.user_id, order.created_at))
+                row_json + "(%s orders WHERE user_id = %s AND created_at = '%s') row;" % (
+                    select_all, order.user_id, order.created_at))
             items = self.cursor.fetchone()
             if items:
                 return jsonify({"msg": "Order successfully added"}), 201
@@ -136,7 +143,7 @@ class Database:
             status, order_id)
         try:
             self.cursor.execute(
-                "SELECT row_to_json(row) FROM (SELECT * FROM orders WHERE order_id = %s) row;" % (order_id))
+                row_json + "(%s orders WHERE order_id = %s) row;" % (select_all, order_id))
             items = self.cursor.fetchone()
             if items:
                 self.cursor.execute(update_command)
@@ -148,7 +155,7 @@ class Database:
 
     def get_orders_by_userid(self, user_id):
         """return all orders belonging to a particular user"""
-        select_command = "SELECT row_to_json(row) FROM (SELECT * FROM orders WHERE user_id = %s) row;" % (
-            user_id)
+        select_command = row_json + "(%s orders WHERE user_id = %s) row;" % (
+            select_all, user_id)
         self.cursor.execute(select_command)
         return self.cursor.fetchall()

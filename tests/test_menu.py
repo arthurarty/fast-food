@@ -82,5 +82,5 @@ def test_add_item_by_user(client):
         "desc": "fried chap",
         "price": 3500},
         headers={'Authorization': 'Bearer ' + user_two(client)})
-    assert resp.status_code == 401
+    assert resp.status_code == 403
     assert b'Not authorized' in resp.data

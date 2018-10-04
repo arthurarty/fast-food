@@ -18,11 +18,10 @@ def client():
 def database():
     app.config.from_object(TestingConfig)
     db_conn = Database(app.config['DATABASE_URL'])
-    db_conn.drop_all_tables()
-    #check if tables exist
+    if db_conn.check_tables():
+        db_conn.drop_all_tables()
     if not db_conn.check_tables():
         db_conn.create_all_tables()
-    #raise Exception(db_conn)
     yield db_conn
     db_conn.drop_all_tables()
 

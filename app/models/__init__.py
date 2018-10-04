@@ -81,7 +81,7 @@ class Database:
     def query_entire_table(self, table_name):
         """returns all records in table"""
         self.cursor.execute("%s (SELECT * FROM %s) row" %
-                            (select_all, table_name))
+                            (row_json, table_name))
         items = self.cursor.fetchall()
         return items
 

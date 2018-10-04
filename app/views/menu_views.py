@@ -20,8 +20,9 @@ def post_menu():
     if not current_user['user_role']:
         return jsonify({'msg': 'Not authorized'}), 403
 
-    output = check_menu_creation(request.json.get(
-        'food_name'), request.json.get('desc'), request.json.get('price'))
+    output = check_menu_creation(
+        request.json.get('food_name'), request.json.get('desc'),
+        request.json.get('price'))
     if output:
         return jsonify({"msg": output}), 400
     food_name = test_str_input(request.json.get('food_name'))
@@ -34,10 +35,16 @@ def post_menu():
                 new_menu_item = Food(food_name, desc, price)
                 menu.insert_new_food(new_menu_item)
             else:
-                return jsonify({"msg": "Price must be an integer > 0. Example: 2"}), 400
+                return jsonify({
+                    "msg":
+                    "Price must be an integer > 0. Example: 2"
+                }), 400
 
         else:
-            return jsonify({"msg": "Desc name must be a string. Example: Well done matooke."}), 400
+            return jsonify({
+                "msg":
+                "Desc name must be a string. Example: Well done matooke."
+            }), 400
         return jsonify({"msg": "Food has been added"}), 201
 
     else:

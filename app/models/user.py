@@ -26,5 +26,5 @@ class User(Database):
 
     def delete_user_from_db(self):
         """deletes users from db"""
-        delete_command = "DELETE FROM users WHERE email = %s;", (self.email,)
+        delete_command = "DELETE FROM users WHERE email = %s;", (self.email, )
         self.cursor.execute(delete_command)

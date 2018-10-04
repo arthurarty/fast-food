@@ -4,7 +4,6 @@ from app.models import Database
 
 db_conn = Database(app.config['DATABASE_URL'])
 
-
 # check if tables exist
 if not db_conn.check_tables():
     db_conn.create_all_tables()

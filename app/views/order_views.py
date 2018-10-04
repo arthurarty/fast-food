@@ -25,7 +25,10 @@ def post_order():
 
     if output:
         return jsonify({"msg": output}), 400
-    return jsonify({"msg": "Menu_id and Quantity must be integers > 0. Example: 2"}), 400
+    return jsonify({
+        "msg":
+        "Menu_id and Quantity must be integers > 0. Example: 2"
+    }), 400
 
 
 @app.route('/v1/users/orders', methods=['GET'])
@@ -74,7 +77,10 @@ def update_status(order_id):
         return jsonify({'msg': 'Not authorized'}), 403
     status = request.json.get('status')
     if status not in ['Processing', 'Cancelled', 'Complete']:
-        return jsonify({"msg": "Status input has to be Processing, Cancelled or Complete."}), 400
+        return jsonify({
+            "msg":
+            "Status input has to be Processing, Cancelled or Complete."
+        }), 400
 
     if status:
         return db_conn.update_order_status(order_id, status)

@@ -9,6 +9,10 @@ from werkzeug.security import generate_password_hash
 
 from app.models.user import User
 
+def print_output(output):
+    if len(output) > 2:
+        return jsonify({"msg": output}), 400
+
 
 def test_str_input(text):
     """test input to be string and not empty"""
@@ -90,3 +94,11 @@ def signup_user(email, name, password, role):
 
     new_user = User(email, name, generate_password_hash(password), role)
     return new_user.insert_new_record()
+
+def check_name_and_role(name, role):
+    output = ""
+    if not name:
+        output = "Name field is empty"
+    if not role:
+        output = "Role field is empty"
+    return print_output(output)   

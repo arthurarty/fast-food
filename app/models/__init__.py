@@ -129,6 +129,24 @@ class Database:
         except psycopg2.IntegrityError:
             return jsonify({"msg": "Menu Item does not exist"}), 404
 
+    
+    def add_user(self, email, name, password, role):
+        """method inserts new user into db"""
+        insert_command = "INSERT INTO users(email, name, password, role) VALUES('%s', '%s', '%s', '%s');" % (
+            email, name, password, role,)
+        try:
+            self.cursor.execute(insert_command)
+            self.cursor.execute(
+                "SELECT * FROM users WHERE email = '%s';" % (email,))
+            item = self.cursor.fetchone()
+            if item:
+                return jsonify({"msg": "User successfully created"}), 201
+        except psycopg2.IntegrityError:
+            output = {
+                'message': 'Email address already exists: ',
+            }
+            return jsonify(output), 400
+
     def get_orders(self):
         """get all orders from database"""
         return self.query_entire_table('orders')

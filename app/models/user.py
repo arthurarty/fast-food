@@ -22,20 +22,7 @@ class User(Database):
 
     def insert_new_record(self):
         """method inserts new user into db"""
-        insert_command = "INSERT INTO users(email, name, password, role) VALUES('%s', '%s', '%s', '%s');" % (
-            self.email, self.name, self.password, self.role,)
-        try:
-            self.cursor.execute(insert_command)
-            self.cursor.execute(
-                "SELECT * FROM users WHERE email = '%s';" % (self.email,))
-            item = self.cursor.fetchone()
-            if item:
-                return jsonify({"msg": "User successfully created"}), 201
-        except psycopg2.IntegrityError:
-            output = {
-                'message': 'Email address already exists: ',
-            }
-            return jsonify(output), 400
+        return self.add_user(self.email, self.name, self.password, self.role)
 
     def delete_user_from_db(self):
         """deletes users from db"""

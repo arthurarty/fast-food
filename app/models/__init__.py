@@ -81,7 +81,7 @@ class Database:
     def query_entire_table(self, table_name):
         """returns all records in table"""
         self.cursor.execute("%s (SELECT * FROM %s) row" %
-                            (select_all, table_name))
+                            (row_json, table_name))
         items = self.cursor.fetchall()
         return items
 
@@ -128,6 +128,24 @@ class Database:
             return jsonify({"msg": "Order not added"}), 400
         except psycopg2.IntegrityError:
             return jsonify({"msg": "Menu Item does not exist"}), 404
+
+    
+    def add_user(self, email, name, password, role):
+        """method inserts new user into db"""
+        insert_command = "INSERT INTO users(email, name, password, role) VALUES('%s', '%s', '%s', '%s');" % (
+            email, name, password, role,)
+        try:
+            self.cursor.execute(insert_command)
+            self.cursor.execute(
+                "SELECT * FROM users WHERE email = '%s';" % (email,))
+            item = self.cursor.fetchone()
+            if item:
+                return jsonify({"msg": "User successfully created"}), 201
+        except psycopg2.IntegrityError:
+            output = {
+                'message': 'Email address already exists: ',
+            }
+            return jsonify(output), 400
 
     def get_orders(self):
         """get all orders from database"""

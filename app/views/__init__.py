@@ -52,3 +52,10 @@ def page_not_found(error):
 def method_not_allowed(error):
     """custom error message for 400"""
     return jsonify({"msg": "Method not allowed"}), 405
+
+@app.before_request
+def check_for_json():
+    if not request.content_type == 'application/json':
+        if not request.method == 'GET' \
+                and '/v1/' in request.path:
+            return jsonify({"msg": "Content type not json"})

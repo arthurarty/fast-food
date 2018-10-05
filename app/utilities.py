@@ -46,7 +46,7 @@ def check_menu_creation(food_name, desc, price):
     """method ensures the three are passed"""
     output = ""
     if not food_name:
-        output = "Food_name is missing"
+        output = "food_name is missing"
     if not desc:
         output = "Desc is missing"
     if not price:

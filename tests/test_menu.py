@@ -44,7 +44,7 @@ def test_post_menu_no_name(client):
         },
         headers={'Authorization': 'Bearer ' + signin(client)})
     assert resp.status_code == 400
-    assert b'Food_name is missing' in resp.data
+    assert b'food_name is missing' in resp.data
 
 
 def test_post_menu_no_desc(client):

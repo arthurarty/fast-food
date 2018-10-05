@@ -106,14 +106,14 @@ def passtest(email, password, name, role):
     if not email:
         output = output + "Email field is empty"
         if not password:
-            output = output + ", Password field is emtpy"
+            output = output + ", Password field is empty"
             if not name:
                 output = output + ", Name field is empty"
                 output = output + rolefield(role)
                 return output
 
     if not password:
-        output = output + "Password field is emtpy"
+        output = output + "Password field is empty"
         if not name:
             output = output + namefield(name)
             if not role:

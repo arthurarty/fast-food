@@ -1,6 +1,7 @@
 import pytest
 from tests import (client, post_json, database)
 
+
 def test_user_creation(client, database):
     resp = post_json(
         client, '/v1/auth/signup', {
@@ -107,3 +108,29 @@ def test_empty_post_email(client):
     resp = post_json(client, '/v1/auth/signup', {"email": " "})
     assert resp.status_code == 400
     assert b'Email field is empty' in resp.data
+    assert b'Name field is empty' in resp.data
+    assert b'Password field is empty' in resp.data
+    assert b'Role field is empty' in resp.data
+
+
+def test_empty_post_name(client):
+    resp = post_json(client, '/v1/auth/signup',
+                     {"email": "arthur.nangai@gmail.com"})
+    assert resp.status_code == 400
+    assert b'Name field is empty' in resp.data
+    assert b'Password field is empty' in resp.data
+    assert b'Role field is empty' in resp.data
+
+
+def test_empty_post_password(client):
+    resp = post_json(client, '/v1/auth/signup',
+                     {"email": "arthur.nangai@gmail.com", "name": "arty"})
+    assert resp.status_code == 400
+    assert b'Password field is empty' in resp.data
+    assert b'Role field is empty' in resp.data
+
+def test_empty_post_role(client):
+    resp = post_json(client, '/v1/auth/signup',
+                     {"email": "arthur.nangai@gmail.com", "name": "arty", "password":"ljfls"})
+    assert resp.status_code == 400
+    assert b'Role field is empty' in resp.data

@@ -3,7 +3,7 @@ from flask import jsonify, request
 from werkzeug.security import check_password_hash
 from flasgger import swag_from
 from app import app
-from app.utilities import test_str_input, create_jwt_token, check_for_email_password, signup_user, check_name_and_role
+from app.utilities import test_str_input, create_jwt_token, check_for_email_password, signup_user
 from app.views import db_conn
 
 
@@ -13,14 +13,38 @@ def add_user():
     """add user adds a user having validated the inputs."""
     email = test_str_input(request.json.get('email'))
     name = test_str_input(request.json.get('name'))
-    password = str(request.json.get('password')).strip()
-    check_for_email_password(email, password)
+    password = test_str_input(request.json.get('password'))
     role = test_str_input(request.json.get('role'))
-    check_name_and_role(name, role)
+    output = ""
+    if not email:
+        output = output + "Email field is empty"
+        if not password:
+            output = output + ", Password field is emtpy"
+            if not name:
+                output = output + "Name field is empty"
+                if not role:
+                    output = output + "Role field is empty"
+
+    if not password:
+        output = output + "Password field is emtpy"
+        if not name:
+            output = output + ", Name field is empty"
+            if not role:
+                output = output + ", Role field is empty"
+    
+    if not name:
+        output = output + "Name field is empty"
+        if not role:
+            output = output + ", Role field is empty"
+
+    if not role:
+        output = output + "Role field is emtpy"
+               
     if email and name and password and role:
         return signup_user(email, name, password, role)
-
-    return jsonify({"msg": "empty field"}), 400
+        
+    return jsonify({"msg":output}), 400
+    #return jsonify({"msg": "empty field"}), 400
 
 
 @app.route('/v1/auth/login', methods=['POST'])

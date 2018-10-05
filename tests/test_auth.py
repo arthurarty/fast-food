@@ -106,3 +106,4 @@ def test_invalid_email(client, database):
 def test_empty_post_email(client):
     resp = post_json(client, '/v1/auth/signup', {"email": " "})
     assert resp.status_code == 400
+    assert b'Email field is empty' in resp.data

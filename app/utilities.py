@@ -95,10 +95,37 @@ def signup_user(email, name, password, role):
     new_user = User(email, name, generate_password_hash(password), role)
     return new_user.insert_new_record()
 
-def check_name_and_role(name, role):
+def rolefield(role):
+    return " Role field is empty"
+
+def namefield(name):
+    return " Name field is empty"
+
+def passtest(email, password, name, role):
     output = ""
+    if not email:
+        output = output + "Email field is empty"
+        if not password:
+            output = output + ", Password field is emtpy"
+            if not name:
+                output = output + ", Name field is empty"
+                output = output + rolefield(role)
+                return output
+
+    if not password:
+        output = output + "Password field is emtpy"
+        if not name:
+            output = output + namefield(name)
+            if not role:
+                output = output + rolefield(role)
+                return output
+
     if not name:
-        output = "Name field is empty"
+        output = output + namefield(name)
+        if not role:
+            output = output + rolefield(role)
+            return output
+
     if not role:
-        output = "Role field is empty"
-    return print_output(output)   
+        output = output + rolefield(role)
+    return output

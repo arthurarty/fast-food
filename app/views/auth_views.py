@@ -3,7 +3,7 @@ from flask import jsonify, request
 from werkzeug.security import check_password_hash
 from flasgger import swag_from
 from app import app
-from app.utilities import test_str_input, create_jwt_token, check_for_email_password, signup_user
+from app.utilities import test_str_input, create_jwt_token, check_for_email_password, signup_user, passtest
 from app.views import db_conn
 
 
@@ -15,31 +15,7 @@ def add_user():
     name = test_str_input(request.json.get('name'))
     password = test_str_input(request.json.get('password'))
     role = test_str_input(request.json.get('role'))
-    output = ""
-    if not email:
-        output = output + "Email field is empty"
-        if not password:
-            output = output + ", Password field is emtpy"
-            if not name:
-                output = output + "Name field is empty"
-                if not role:
-                    output = output + "Role field is empty"
-
-    if not password:
-        output = output + "Password field is emtpy"
-        if not name:
-            output = output + ", Name field is empty"
-            if not role:
-                output = output + ", Role field is empty"
-    
-    if not name:
-        output = output + "Name field is empty"
-        if not role:
-            output = output + ", Role field is empty"
-
-    if not role:
-        output = output + "Role field is emtpy"
-               
+    output = passtest(email, password, name, role)
     if email and name and password and role:
         return signup_user(email, name, password, role)
         

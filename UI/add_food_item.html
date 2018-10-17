@@ -60,23 +60,31 @@
             </div>
             <!-- end of side bar navigation -->
 
-            <div class="col-4-12 content">
+            <div class="col-4-12 content" id="food_menu">
                 <h3 class="center_text"><i class="fa fa-cutlery" aria-hidden="true"> Add food item</i></h3>
-                <form class="add_food">
+                <form class="add_food" id="add_food">
                     <div class="row input_row">
                         <div class="col-2">
                             Enter name of food item
                         </div>
                         <div class="col-2">
-                            <input class="form_input_black" placeholder="enter name of food here" type="text" name="name_food">
+                            <input class="form_input_black" placeholder="enter name of food here" type="text" id="name_food">
                         </div>
                     </div>
+                    <div class="row input_row">
+                        <div class="col-2">
+                            Enter desc
+                        </div>
+                        <div class="col-2">
+                            <input class="form_input_black" placeholder="enter desc" type="text" id="desc">
+                        </div>
+                   </div>
                    <div class="row input_row">
                         <div class="col-2">
                             Enter price of food item
                         </div>
                         <div class="col-2">
-                            <input class="form_input_black" placeholder="enter price" type="number" name="price">
+                            <input class="form_input_black" placeholder="enter price" type="number" id="price">
                         </div>
                    </div>
                     <input type="submit" class="green-btn" value="add item">

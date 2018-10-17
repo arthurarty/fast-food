@@ -1,3 +1,4 @@
+document.getElementById('signin').addEventListener('submit', signin);
 const appUrl = 'http://127.0.0.1:5000/v1/'
 let jwt = ''
 
@@ -5,20 +6,18 @@ let jwt = ''
 function returns success message 
 */
 function outputSuccess(response) {
-    //if login unsuccessful
-    if (response.status = 400){
-        output = 'Login unsuccessful. <br>'
-        document.getElementById('divSignup').innerHTML = output;
-        console.log(response)
-    }
-    //successful login
-    else {
-        output = 'Login successful. <br> <p class="center_text">You can now <a href="view_menu.html">View menu.</a></p>'
-        document.getElementById('divSignup').innerHTML = output;
-        jwt = response[1]['access_token']
-        console.log(jwt)
-        setTimeout(window.location.replace("view_menu.html"), 9000)
-    }
+        if (response['msg'] == undefined){
+            output = 'Login successful. <br> <p class="center_text">You can now <a href="view_menu.html">View menu.</a></p>'
+            document.getElementById('divSignup').innerHTML = output;
+            jwt = response[1]['access_token']
+            console.log(jwt)
+        }
+        else {
+            output = `Login unsuccessful. <br>  ${response['msg']}`
+            document.getElementById('divSignup').innerHTML = output;
+            console.log(response['msg'])
+        }
+        //setTimeout(window.location.replace("view_menu.html"), 9000)
 }
 
 /*

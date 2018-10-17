@@ -7,20 +7,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
         <link rel="stylesheet" type="text/css" href="css/signup.css" />
-        <script src="js/main.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>
         <main>
             <div class="col-2" id="burger">
             </div>
-            <div class="sign_in col-2">
+            <div class="sign_in col-2" id="divSignup">
                 <h1 class="center_text">Fast Food Fast : Login</h1>
-                <form method="get" action="view_menu.html">
+                <form id="signin">
                 Email address
-                <input class="form_input" type="email" name="email" required>
+                <input class="form_input" type="email" id="email" required>
                 Password
-                <input class="form_input" type="password" name="password" required>
+                <input class="form_input" type="password" id="password" required>
                 <input class="green-btn" type="submit" value="Login">
                 <p class="center_text">Don't have account? <a href="signup.html">Click here.</a></p>
                 </form>
@@ -29,5 +28,6 @@
         <footer>
             <p class="center">Fast Food Fast LLC</p>
         </footer>
+        <script src="js/main.js"></script>
     </body>
 </html>

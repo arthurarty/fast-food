@@ -5,11 +5,20 @@ let jwt = ''
 function returns success message 
 */
 function outputSuccess(response) {
-    output = 'Login successful. <br> <p class="center_text">You can now <a href="view_menu.html">View menu.</a></p>'
-    document.getElementById('divSignup').innerHTML = output;
-    jwt = response[1]['access_token']
-    console.log(jwt)
-    setTimeout(window.location.replace("view_menu.html"), 9000)
+    //if login unsuccessful
+    if (response.status = 400){
+        output = 'Login unsuccessful. <br>'
+        document.getElementById('divSignup').innerHTML = output;
+        console.log(response)
+    }
+    //successful login
+    else {
+        output = 'Login successful. <br> <p class="center_text">You can now <a href="view_menu.html">View menu.</a></p>'
+        document.getElementById('divSignup').innerHTML = output;
+        jwt = response[1]['access_token']
+        console.log(jwt)
+        setTimeout(window.location.replace("view_menu.html"), 9000)
+    }
 }
 
 /*

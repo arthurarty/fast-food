@@ -10,6 +10,7 @@ function outputSuccess(response) {
             output = 'Login successful. <br> <p class="center_text">You can now <a href="view_menu.html">View menu.</a></p>'
             document.getElementById('divSignup').innerHTML = output;
             jwt = response[1]['access_token']
+            sessionStorage.setItem('jwt', jwt);
             console.log(jwt)
         }
         else {
@@ -23,8 +24,8 @@ function outputSuccess(response) {
 /*
 post email and password
 */
-function signin() {
-    event.preventDefault();
+function signin(event) {
+    event.preventDefault()
     console.log("signin method called")
 
     let email = document.getElementById('email').value
@@ -39,4 +40,3 @@ function signin() {
         .then((response) => outputSuccess(response))
         .catch((err) => console.log(err))
 }
-

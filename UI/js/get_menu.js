@@ -5,13 +5,13 @@ let jwt = sessionStorage.getItem('jwt')
 function returns success message 
 */  
 function outputSuccess(response) {
-        output = ` <p class="info-success">
-        <span>Message: </span> <br>
-        ${response['msg']} <br>
-        Refresh page to add another item.
-        </p>`
-        document.getElementById('food_menu').innerHTML = output;
-        console.log(response)
+        let output = ''
+        for(let x in response){ 
+                console.log(response[x][0].description)
+            }
+        //document.getElementById('food_menu').innerHTML = output;
+        //console.log(response)
+
 }
 
 /*
@@ -28,6 +28,6 @@ function get_menu(){
             'Authorization':`Bearer ${jwt}`
          }
 }).then((res) => res.json())
-        .then((response) => console.log(response))
+        .then((response) => outputSuccess(response))
         .catch((err) => console.log(err)) 
 }

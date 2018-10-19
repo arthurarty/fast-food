@@ -6,11 +6,10 @@
     <title>Fast Food Fast</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <script src="js/main.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="https://use.fontawesome.com/d92b72e3f8.js"></script>
 </head>
-<body>
+<body onload="get_menu()">
 
     <!-- top navigation -->
     <nav class="row">
@@ -36,7 +35,7 @@
 
                 <!-- restuarant menu-->
                 <div class="restaurant_menu"> 
-                    <div class="food_item">
+                    <div class="food_item" id='food_menu'>
                         <div class="row">
                                 <div class="col-2">
                                     <h3>Sausage</h3>
@@ -77,5 +76,6 @@
     <footer>
         <p class="center">Fast Food Fast LLC</p>
     </footer>
+    <script src="js/get_menu.js"></script>
 </body>
 </html>

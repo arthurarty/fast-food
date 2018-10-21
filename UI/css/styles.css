@@ -52,6 +52,9 @@ ul {
     border-bottom:1px solid white;
     background: transparent;
 }
+.form_input_hide {
+    display: none;
+}
 .add_food {
     width: 700px;
     margin-right: auto;

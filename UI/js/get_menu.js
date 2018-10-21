@@ -18,8 +18,8 @@ function outputSuccess(response) {
                         </div>
                     </div>
                 <p>${response[x][0].description}</p>
-                <form class="quantity_form" action="confirm_order.html" method="get">
-                    <input type="number" name="quantity" placeholder="0" class="form_input" min="1"> 
+                <form class="quantity_form">
+                    <input type="number" id="quantity" placeholder="0" class="form_input" min="1"> 
                     <input type="submit" class="blue-btn" value="Order">
                 </form>
             </div>`

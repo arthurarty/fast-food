@@ -52,8 +52,6 @@ function post_order(x){
         console.log(x)
         let quantity = Number(document.getElementById(`${x}`).value)
         console.log(quantity)
-        /*
-        let menu_id = Number(document.getElementById('menu_id').value)
 
         fetch(appUrl + 'users/orders', {
             method: 'POST',
@@ -62,8 +60,8 @@ function post_order(x){
                 'Content-Type': 'application/json',
                 'Authorization':`Bearer ${jwt}`
              },
-            body: JSON.stringify({menu_id: menu_id, quantity: quantity })
+            body: JSON.stringify({menu_id: x, quantity: quantity })
         }).then((res) => res.json())
             .then((response) => console.log(response))
-            .catch((err) => console.log(err)) */
+            .catch((err) => console.log(err)) 
     }

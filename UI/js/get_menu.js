@@ -18,16 +18,12 @@ function outputSuccess(response) {
                         </div>
                     </div>
                 <p>${response[x][0].description}</p>
-                <form class="quantity_form" id='post_order'>
-                    <input type="number" id="quantity" placeholder="0" class="form_input" min="1"> 
-                    <input type="number" class="form_input_hide" id="menu_id" value="${response[x][0].menu_id}">
-                    <input type="submit" class="blue-btn" value="Order">
-                </form>
+                    <input type="number" id="${response[x][0].menu_id}" placeholder="0" class="form_input_black" min="1"> 
+                    <button class="blue-btn" onclick="post_order(${response[x][0].menu_id})">Click</button>
             </div>`
             }
         document.getElementById('food_menu').innerHTML = output;
         //console.log(response)
-        document.getElementById('post_order').addEventListener('submit', post_order);
 }
 
 /*
@@ -51,12 +47,13 @@ function get_menu(){
 /*
 method to add food item to menu
 */
-function post_order(event){
-        event.preventDefault()
+function post_order(x){
         console.log("Post order method called")
-
+        console.log(x)
+        let quantity = Number(document.getElementById(`${x}`).value)
+        console.log(quantity)
+        /*
         let menu_id = Number(document.getElementById('menu_id').value)
-        let quantity = Number(document.getElementById('quantity').value)
 
         fetch(appUrl + 'users/orders', {
             method: 'POST',
@@ -68,5 +65,5 @@ function post_order(event){
             body: JSON.stringify({menu_id: menu_id, quantity: quantity })
         }).then((res) => res.json())
             .then((response) => console.log(response))
-            .catch((err) => console.log(err)) 
+            .catch((err) => console.log(err)) */
     }

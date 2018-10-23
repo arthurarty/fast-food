@@ -26,7 +26,7 @@ function outputSuccess(response) {
 }
 
 /*
-method to add food item to menu
+method to get menu
 */
 function get_menu(){
     console.log("Add food method called")

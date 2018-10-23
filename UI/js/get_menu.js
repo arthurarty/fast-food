@@ -23,7 +23,6 @@ function outputSuccess(response) {
             </div>`
             }
         document.getElementById('food_menu').innerHTML = output;
-        //console.log(response)
 }
 
 /*
@@ -44,6 +43,9 @@ function get_menu(){
         .catch((err) => console.log(err)) 
 }
 
+function order_success(response){
+        console.log(response)
+}
 /*
 method to add food item to menu
 */
@@ -62,6 +64,6 @@ function post_order(x){
              },
             body: JSON.stringify({menu_id: x, quantity: quantity })
         }).then((res) => res.json())
-            .then((response) => console.log(response))
+            .then((response) => order_success(response))
             .catch((err) => console.log(err)) 
     }

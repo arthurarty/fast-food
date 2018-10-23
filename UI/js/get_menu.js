@@ -45,6 +45,12 @@ function get_menu(){
 
 function order_success(response){
         console.log(response)
+        output = ` <p class="info-success">
+        <span>Message: </span> <br>
+        ${response['msg']} <br>
+        Refresh page to make another order.
+        </p>`
+        document.getElementById('food_menu').innerHTML = output;
 }
 /*
 method to add food item to menu

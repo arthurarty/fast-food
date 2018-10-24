@@ -54,11 +54,19 @@ function output_single_order(response){
                     Status: <i>${response[0].status}</i> <br>
                     User_id: <i>${response[0].user_id}</i><br>
                     Created_at : <i>${response[0].created_at}</i> <br>
-                    <div class="btn-group">
-                    <button class="green-btn" onclick="get_orders()">
+                    <select class="form_input_select" id="status">
+                    <option value="Complete">Complete</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Cancelled">Cancelled</option>
+                    </select>
+                    <div class="btn-group row">
+                    <button class="blue-btn col-2" onclick="update_status(${response[0].order_id})">
+                    Update order
+                    </button>
+                    <button class="green-btn col-2" onclick="get_orders()">
                     View all orders
                     </button>
-                </div>  
+                    </div> 
                 </div>`
     document.getElementById('orders').innerHTML = output
 }
@@ -78,5 +86,40 @@ function get_single_order(order_id){
          }
 }).then((res) => res.json())
         .then((response) => output_single_order(response))
+        .catch((err) => console.log(err)) 
+}
+
+/*
+method to show update success. 
+*/
+function update_success(response){
+    console.log(response)
+    output = ` <p class="info-success">
+    <span>Message: </span> <br>
+    ${response['msg']} <br>
+    Refresh page to make another order.
+    </p>
+    <button class="green-btn col-2" onclick="get_orders()">
+    View all orders
+    </button>`
+    document.getElementById('orders').innerHTML = output;
+}
+
+/*
+function to update status
+*/
+function update_status(order_id){
+    console.log("Update status method")
+    let status = document.getElementById(`status`).value
+    fetch(appUrl + `orders/${order_id}/`, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization':`Bearer ${jwt}`
+         },
+        body: JSON.stringify({status: status })
+    }).then((res) => res.json())
+        .then((response) => update_success(response))
         .catch((err) => console.log(err)) 
 }

@@ -6,11 +6,10 @@
     <title>Fast Food Fast</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <script src="js/main.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="https://use.fontawesome.com/d92b72e3f8.js"></script>
 </head>
-<body>
+<body onload="get_history()">
 
     <!-- top navigation -->
     <nav class="row">
@@ -35,7 +34,7 @@
                 <h3 class="center_text"><i class="fa fa-cutlery" aria-hidden="true"> View Your Orders</i></h3>
 
                 <!-- list of orders-->
-                <div class="list_orders"> 
+                <div class="list_orders" id="orders"> 
 
                     <!-- each order -->
                     <div class="order">
@@ -65,5 +64,6 @@
     <footer>
         <p class="center">Fast Food Fast LLC</p>
     </footer>
+    <script src="js/get_history.js"></script>
 </body>
 </html>

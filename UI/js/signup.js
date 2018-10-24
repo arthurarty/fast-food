@@ -18,7 +18,7 @@ function postData(event) {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    let role = 'True';
+    let role = document.getElementById('role').value;;
 
     fetch(appUrl, {
         method: 'POST',

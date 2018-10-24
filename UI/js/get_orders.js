@@ -89,9 +89,37 @@ function get_single_order(order_id){
         .catch((err) => console.log(err)) 
 }
 
+/*
+method to show update success. 
+*/
+function update_success(response){
+    console.log(response)
+    output = ` <p class="info-success">
+    <span>Message: </span> <br>
+    ${response['msg']} <br>
+    Refresh page to make another order.
+    </p>
+    <button class="green-btn col-2" onclick="get_orders()">
+    View all orders
+    </button>`
+    document.getElementById('orders').innerHTML = output;
+}
+
+/*
+function to update status
+*/
 function update_status(order_id){
     console.log("Update status method")
     let status = document.getElementById(`status`).value
-    console.log(status)
-    console.log(order_id)
+    fetch(appUrl + `orders/${order_id}/`, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization':`Bearer ${jwt}`
+         },
+        body: JSON.stringify({status: status })
+    }).then((res) => res.json())
+        .then((response) => update_success(response))
+        .catch((err) => console.log(err)) 
 }

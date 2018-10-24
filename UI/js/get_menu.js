@@ -42,7 +42,9 @@ function get_menu(){
         .then((response) => outputSuccess(response))
         .catch((err) => console.log(err)) 
 }
-
+/*
+method to output order success
+*/
 function order_success(response){
         console.log(response)
         output = ` <p class="info-success">

@@ -1,5 +1,5 @@
 document.getElementById('signUp').addEventListener('submit', postData);
-const appUrl = 'http://127.0.0.1:5000/v1/auth/signup';
+const appUrl = 'https://arty-fast.herokuapp.com/v1/auth/signup';
 
 /*
 function returns success message 

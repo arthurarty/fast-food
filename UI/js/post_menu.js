@@ -1,5 +1,5 @@
 document.getElementById('food_add').addEventListener('submit', add_food)
-const appUrl = 'http://127.0.0.1:5000/v1/'
+const appUrl = 'https://arty-fast.herokuapp.com/v1/'
 let jwt = sessionStorage.getItem('jwt')
 
 /*

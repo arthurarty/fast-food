@@ -17,7 +17,7 @@ Listed below are the python packages need to run the application.
 * `Python 3.5` or greater : Python is interpreted high-level programming language for general-purpose programming. [Download python](https://www.python.org/downloads/)
 * `Virtualevn` : A tool for creating isolated Python environments. [Get-virtualenv](https://packaging.python.org/key_projects/#virtualenv) 
 * `Postman` : Postman is a powerful tool for performing integration testing with your API. [Get-postman](https://www.getpostman.com/)
-* `Postgres` : An open source relational database management system ( DBMS ) developed by a worldwide team of volunteers.
+* `Postgres` : An open source relational database management system ( DBMS ) developed by a worldwide team of volunteers. Similar commands to msyql. 
 
 ### Installing
 

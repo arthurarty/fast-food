@@ -18,7 +18,7 @@ class DevelopmentConfig(Config):
     """
     DEBUG = True
     DATABASE_URL = os.environ.get(
-        'DATABASE_URL') or 'postgres://postgres:asP2Me@localhost:5432/fastfood'
+        'DATABASE_URL') or 'postgres://postgres:qwe@localhost:5432/fastfood'
 
 
 class TestingConfig(Config):
@@ -26,4 +26,4 @@ class TestingConfig(Config):
     class for testing configuration
     """
     DEBUG = True
-    DATABASE_URL = 'postgres://postgres:asP2Me@localhost:5432/fastfood'
+    DATABASE_URL = 'postgres://postgres:qwe@localhost:5432/fastfood'

@@ -1,12 +1,14 @@
-from flask import Flask, request, jsonify
-import json
+"""
+Create instance of Flask application.
+"""
+from flask import Flask
+from flasgger import Swagger
+from flask_jwt_extended import JWTManager
+from config import DevelopmentConfig
+from flask_cors import CORS
 
-
-def create_app():
-    from flask_jwt_extended import (
-        JWTManager)
-
-    app = Flask(__name__, instance_relative_config=True)
-    app.config['JWT_SECRET_KEY'] = 'qweBas12@!asBASD'
-    JWTManager(app)
-    return app
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_object(DevelopmentConfig)
+swag = Swagger(app)
+JWTManager(app)
+CORS(app)

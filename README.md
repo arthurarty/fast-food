@@ -4,8 +4,8 @@
 ## Fast-Food-Fast 
 A food delivery service app for a restaurant.
 
-# Link to demo on heroku application
-https://arty-fast.herokuapp.com/v1/orders
+# Link to demo on Heroku
+https://arty-fast.herokuapp.com/
 
 ## Getting Started
 * Clone the repo https://github.com/arthurarty/fast-food
@@ -17,6 +17,7 @@ Listed below are the python packages need to run the application.
 * `Python 3.5` or greater : Python is interpreted high-level programming language for general-purpose programming. [Download python](https://www.python.org/downloads/)
 * `Virtualevn` : A tool for creating isolated Python environments. [Get-virtualenv](https://packaging.python.org/key_projects/#virtualenv) 
 * `Postman` : Postman is a powerful tool for performing integration testing with your API. [Get-postman](https://www.getpostman.com/)
+* `Postgres` : An open source relational database management system ( DBMS ) developed by a worldwide team of volunteers. Similar commands to msyql. 
 
 ### Installing
 
@@ -28,7 +29,9 @@ Using terminal or command line prompt enter the directory fast-fast.
 cd fast-food
 ```
 
-Install the application requirements.
+- Install the application requirements.
+- Using postgres create a database called fastfood.
+- Go to config.py file and change the password to your password in each DATABASE_URL these are on line 21 and 29.
 
 ```
 pip install -r requirements.txt

@@ -1,17 +1,19 @@
-"""the menu class"""
+"""File contains the menu class"""
+from app import app
 from app.models import Database
-import psycopg2
-import json
-from flask import jsonify
 
 
 class Menu(Database):
+    """
+    Menu class stores foods on the menu.
+    """
+
     def __init__(self):
-        super().__init__()
+        super().__init__(app.config['DATABASE_URL'])
 
     def insert_new_food(self, food):
         """method creates a single table"""
-        insert_command = "INSERT INTO menu(name, description, price) Values ('%s', '%s', %s);" % (
+        insert_command = "INSERT INTO menu(name, description, price) Values('%s', '%s', '%s'); " % (
             food.name, food.description, food.price)
         self.cursor.execute(insert_command)
 

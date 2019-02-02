@@ -153,7 +153,7 @@ class Database:
                 return jsonify({"msg": "User successfully created"}), 201
         except psycopg2.IntegrityError:
             output = {
-                'message': 'Email address already exists: ',
+                'msg': 'Email address already exists: ',
             }
             return jsonify(output), 400
 

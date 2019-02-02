@@ -53,6 +53,7 @@ def method_not_allowed(error):
     """custom error message for 400"""
     return jsonify({"msg": "Method not allowed"}), 405
 
+
 @app.before_request
 def check_for_json():
     if not request.content_type == 'application/json':

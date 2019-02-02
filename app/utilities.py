@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash
 
 from app.models.user import User
 
+
 def print_output(output):
     if len(output) > 2:
         return jsonify({"msg": output}), 400
@@ -72,7 +73,7 @@ def create_jwt_token(db_conn, email):
     user_details['user_id'] = user_id[0]
     user_details['user_role'] = user_role[0]
     access_token = create_access_token(identity=user_details)
-    output = {'message': 'Successful login'}
+    output = {'msg': 'Successful login'}
     access_token_output = {'access_token': "%s" % (access_token)}
     return jsonify(output, access_token_output), 200
 
@@ -95,11 +96,14 @@ def signup_user(email, name, password, role):
     new_user = User(email, name, generate_password_hash(password), role)
     return new_user.insert_new_record()
 
+
 def rolefield(role):
     return " Role field is empty"
 
+
 def namefield(name):
     return " Name field is empty"
+
 
 def passtest(email, password, name, role):
     output = ""
